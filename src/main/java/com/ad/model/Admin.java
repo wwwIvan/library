@@ -6,8 +6,8 @@ import javax.persistence.Table;
 /**
  * Created by Ivan on 2016/8/2.
  */
-@Table(name = "user")
-public class User {
+@Table(name = "admin")
+public class Admin {
 
     @Id
     private Long id;
@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String userName;
     private String sex;
-    private String userId;
+    private String idCard;
 
     public String getUserName() {
         return userName;
@@ -57,23 +57,22 @@ public class User {
         this.sex = sex;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
-    public User(){}
-
-    public User(Long id, String account, String password, String userName, String sex, String userId) {
+    public Admin(Long id, String account, String password, String userName, String sex, String idCard) {
         this.id = id;
         this.account = account;
         this.password = password;
         this.userName = userName;
         this.sex = sex;
-        this.userId = userId;
+        this.idCard = idCard;
     }
 
+    public Admin(){}
 }
