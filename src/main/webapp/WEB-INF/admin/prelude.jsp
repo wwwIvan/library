@@ -10,7 +10,7 @@
          pageEncoding="UTF-8"%>
 <!--Header-part-->
 <div id="header">
-    <h1><a href="dashboard.html">Aode Library</a></h1>
+    <h1><a href="">Aode Library</a></h1>
 </div>
 <!--close-Header-part-->
 
@@ -25,7 +25,7 @@
 </ul>
 </div>
 <div id="search">
-    <input type="text" placeholder="请输入..."/>
+    <input type="text" placeholder="Search here..."/>
     <button type="submit" class="tip-left" title="Search"><i class="icon-search icon-white"></i></button>
 </div>
 <!--close-top-Header-menu-->

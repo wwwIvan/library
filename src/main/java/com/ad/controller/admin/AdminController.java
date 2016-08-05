@@ -32,10 +32,17 @@ public class AdminController {
         return "admin/loginUI";
     }
 
+
     @RequestMapping(value = "/login")
     public String login(String account,String password){
 
         return "admin/list";
     }
+
+    @RequestMapping(value = "/list")
+    public String list(){
+        return "admin/list";
+    }
+
 
 }

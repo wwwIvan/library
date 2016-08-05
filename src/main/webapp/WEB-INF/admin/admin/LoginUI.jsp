@@ -14,7 +14,9 @@
 <head>
     <title>Maruti Admin</title><meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%@ include file="../mstp_css.jsp"%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maruti-login.css" />
 </head>
 <body>
 <div id="logo">
@@ -57,7 +59,34 @@
         </div>
     </form>
 </div>
-<%@ include file="../mstp_js.jsp"%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/maruti.login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $("#admin_form").validate({
+            rules:{
+                account:{
+                    required: true,
+                },
+                password: {
+                    required: true,
+                }
+            },
+            messages:{
+                account:{
+                    required:"请输入账号",
+                },
+                password:{
+                    required: "请输入密码",
+                },
+            }
+        })
+    })
+
+</script>
 
 </body>
 

@@ -14,7 +14,12 @@
     <title>Maruti Admin</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%@include file="../mstp_css.jsp"%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/uniform.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/select2.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maruti-style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maruti-media.css" class="skin-color" />
 </head>
 <body>
 <%@include file="../prelude.jsp"%>
@@ -49,13 +54,6 @@
                                 <td>Win 95+</td>
                                 <td class="center">4</td>
                             </tr>
-                            <tr class="gradeC">
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 5.0</td>
-                                <td>Win 95+</td>
-                                <td class="center">5</td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -67,7 +65,14 @@
 <div class="row-fluid">
     <div id="footer" class="span12"> 2012 &copy; Marutii Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> </div>
 </div>
-<%@ include file="../mstp_js.jsp"%>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.custom.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.uniform.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/select2.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/maruti.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/maruti.tables.js"></script>
 </body>
 </html>
 
