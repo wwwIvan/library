@@ -12,7 +12,7 @@
 <html lang="en">
 
 <head>
-    <title>Maruti Admin</title><meta charset="UTF-8" />
+    <title>Aode Library</title><meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" />
@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="logo">
-    <img src="img/login-logo.png" alt="" />
+    <img src="${pageContext.request.contextPath}/resources/img/login-logo.png" alt="" />
 </div>
 <div id="loginbox">
     <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/admin/login">
@@ -28,20 +28,21 @@
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="Account" name="account"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="Account" name="account" id="account"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="password"/>
+                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="password" id="password"/>
                 </div>
             </div>
         </div>
         <div class="form-actions">
             <span class="pull-left"><a href="#" class="flip-link btn btn-warning" id="to-recover">Lost password?</a></span>
-            <span class="pull-right"><input type="submit" class="btn btn-success" value="Login" /></span>
+            <span class="pull-left"><a href="${pageContext.request.contextPath}/admin/registerUI" class="flip-link btn btn-warning">注册</a></span>
+            <span class="pull-right"><input type="submit" class="btn btn-success" value="登录" /></span>
         </div>
     </form>
     <form id="recoverform" action="#" class="form-vertical">
@@ -61,34 +62,54 @@
 </div>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/maruti.login.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/browser.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
     <script type="text/javascript">
     $(function () {
-        $("#admin_form").validate({
+        $("#loginform").validate({
             rules:{
                 account:{
                     required: true,
+                    remote:{
+                        type:"post",
+                        url:"${pageContext.request.contextPath}/admin/login",
+                        data:{
+                            account:function () {
+                                return $("#account").val();
+                            }
+                        }
+                    }
                 },
                 password: {
                     required: true,
+                    remote:{
+                        type:"post",
+                        url:"${pageContext.request.contextPath}/admin/login",
+                        data:{
+                            account:function () {
+                                return $("#password").val();
+                            }
+                        }
+                    }
                 }
             },
             messages:{
                 account:{
                     required:"请输入账号",
+                    remote:"用户名不正确"
                 },
                 password:{
                     required: "请输入密码",
+                    remote:"密码不正确"
                 },
             }
         })
     })
-
-</script>
-
+    </script>
 </body>
+
 
 </html>
 
