@@ -20,7 +20,7 @@
 
 <!--top-Header-menu-->
 <c:choose>
-    <c:when test="${sessionScope.logged}">
+    <c:when test="${sessionScope.logged != null}">
         <div id="user-nav" class="navbar navbar-inverse"><ul class="nav">
             <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
         </ul>
@@ -44,8 +44,8 @@
 <div id="sidebar">
     <a href="#" class="visible-phone"><i class="icon icon-th-list"></i> Common Elements</a>
     <ul>
-        <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>主页</span></a></li>
-        <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
+        <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>管理员列表</span></a></li>
+        <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>图书馆简介</span></a> </li>
         <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
         <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
         <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
@@ -59,11 +59,10 @@
         <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
         <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
 
-        <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label">3</span></a>
+        <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">3</span></a>
             <ul>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="calendar.html">Calendar</a></li>
-                <li><a href="chat.html">Chat option</a></li>
+                <li><a href="${pageContext.request.contextPath}/bookType/list">图书类型管理</a></li>
+                <li><a href="calendar.html">图书信息管理</a></li>
             </ul>
         </li>
 

@@ -34,10 +34,20 @@ public class AdminController {
         return "admin/list";
     }
 
-    @RequestMapping(value = "/check")
-    public void check(String account, HttpServletResponse response) throws IOException{
-        List<Admin> admins = adminService.check(account);
+    @RequestMapping(value = "/checkAccount")
+    public void checkAccount(String account, HttpServletResponse response) throws IOException{
+        List<Admin> admins = adminService.checkAccount(account);
         if(admins.size()>0){
+            response.getWriter().print(false);
+        }else{
+            response.getWriter().print(true);
+        }
+    }
+
+    @RequestMapping(value = "/check")
+    public void check(String account,String password, HttpServletResponse response) throws IOException{
+        Admin admin = adminService.login(account,password);
+        if(admin == null){
             response.getWriter().print(false);
         }else{
             response.getWriter().print(true);

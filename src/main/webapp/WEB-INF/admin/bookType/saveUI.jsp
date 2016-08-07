@@ -1,16 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Ivan
-  Date: 2016/8/2
-  Time: 20:47
+  Date: 2016/8/6
+  Time: 23:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html lang="en">
-
 <head>
     <title>Aode Library</title><meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,10 +26,10 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="${pageContext.request.contextPath}/admin/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>主页</a>
-            <a>注册</a>
+            <a href="${pageContext.request.contextPath}/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书中心</a>
+            <a>图书类型编辑</a>
         </div>
-        <h1>注册</h1>
+        <h1>图书类型编辑</h1>
     </div>
 
     <div class="container-fluid">
@@ -42,42 +40,23 @@
 								<span class="icon">
 									<i class="icon-align-justify"></i>
 								</span>
-                        <h5>管理员注册</h5>
+                        <h5>图书类型编辑</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/user/register" method="post" class="form-horizontal" id="user_form">
+                        <form action="${pageContext.request.contextPath}/bookType/${ bookType.id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form">
                             <div class="control-group">
-                                <label class="control-label">账号:</label>
-                                <div class="controls"><input type="text" class="span3" placeholder="请输入账号" name="account" id="account"/></div>
+                                <label class="control-label">图片添加:</label>
+                                <div class="controls">
+                                    <input type="file" name="picture"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">名字:</label>
+                                <div class="controls"><input type="text" class="span3" placeholder="请输入类型名" name="name" id="name"/></div>
                                 <span id="message"></span>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label">密码:</label>
-                                <div class="controls">
-                                    <input type="password"  class="span3" placeholder="请输入密码" name="password" id="password"/>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">姓名:</label>
-                                <div class="controls">
-                                    <input type="text"  class="span3" placeholder="请输入姓名" name="userName" id="userName"/>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">性别:</label>
-                                <div class="controls">
-                                    <label><input type="radio" name="sex" value="男" id="male"/> 男</label>
-                                    <label><input type="radio" name="sex" value="女" id="female"/> 女</label>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">身份证:</label>
-                                <div class="controls">
-                                    <input type="text"  class="span3" placeholder="请输入身份证" name="idCard" id="idCard"/>
-                                </div>
-                            </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success">注册</button>
+                                <button type="submit" class="btn btn-success">${ bookType.id == null ? '添加' : '修改'}</button>
                             </div>
                         </form>
                     </div>
@@ -100,41 +79,15 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("#user_form").validate({
+        $("#book_form").validate({
             rules:{
-                account:{
+                name:{
                     required: true,
-                    rangelength:[6,10]
-                },
-                password:{
-                    required: true,
-                    rangelength:[6,10]
-                },
-                userName:{
-                    required:true
-                },
-                idCard:{
-                    required:true,
-                    rangelength:[18,18],
-                    digits:true
                 }
             },
             messages:{
-                account:{
-                    required:"请输入账号",
-                    rangelength:"账号长度需在6-10之间"
-                },
-                password:{
-                    required: "请输入密码",
-                    rangelength:"密码长度需在6-10之间"
-                },
-                userName:{
-                    required:"请输入用户名"
-                },
-                idCard:{
-                    required: "请输入身份证",
-                    rangelength:"身份证长度必须为18位",
-                    digits:"必须为整数"
+                name: {
+                    required: "请输入类型名",
                 }
             }
         })
@@ -142,5 +95,4 @@
 
 </script>
 </body>
-
 </html>

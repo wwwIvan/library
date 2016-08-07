@@ -66,7 +66,7 @@
                     rangelength:[6,10],
                     remote:{
                         type:"post",
-                        url:"${pageContext.request.contextPath}/admin/check",
+                        url:"${pageContext.request.contextPath}/admin/checkAccount",
                         data:{
                             account:function () {
                                 return $("#account").val();

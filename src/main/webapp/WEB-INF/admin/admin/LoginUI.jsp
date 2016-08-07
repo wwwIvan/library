@@ -72,23 +72,17 @@
             rules:{
                 account:{
                     required: true,
-                    remote:{
-                        type:"post",
-                        url:"${pageContext.request.contextPath}/admin/login",
-                        data:{
-                            account:function () {
-                                return $("#account").val();
-                            }
-                        }
-                    }
                 },
                 password: {
                     required: true,
                     remote:{
                         type:"post",
-                        url:"${pageContext.request.contextPath}/admin/login",
+                        url:"${pageContext.request.contextPath}/admin/check",
                         data:{
                             account:function () {
+                                return $("#account").val();
+                            },
+                            password:function () {
                                 return $("#password").val();
                             }
                         }
@@ -98,11 +92,10 @@
             messages:{
                 account:{
                     required:"请输入账号",
-                    remote:"用户名不正确"
                 },
                 password:{
                     required: "请输入密码",
-                    remote:"密码不正确"
+                    remote:"账号或密码不正确"
                 },
             }
         })

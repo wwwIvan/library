@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface AdminService extends BaseService<Admin>{
     public Admin login(String account, String password);
-    List<Admin> check(String account);
+    List<Admin> checkAccount(String account);
 }

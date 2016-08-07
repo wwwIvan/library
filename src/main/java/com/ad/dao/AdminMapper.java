@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface AdminMapper extends BaseMapper<Admin> {
     Admin login(Admin admin);
-    List<Admin> check(String account);
+    List<Admin> checkAccount(String account);
 }

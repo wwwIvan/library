@@ -18,8 +18,8 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
     @Autowired
     private AdminMapper adminMapper;
 
-    public List<Admin> check(String account) {
-        List<Admin> admins = adminMapper.check(account);
+    public List<Admin> checkAccount(String account) {
+        List<Admin> admins = adminMapper.checkAccount(account);
         return admins;
     }
 

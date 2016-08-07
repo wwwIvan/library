@@ -4,7 +4,7 @@
     <select id="login" parameterType="com.ad.model.Admin" resultType="com.ad.model.Admin">
         SELECT * FROM admin where account = #{account} and password = #{password};
     </select>
-    <select id="check" parameterType="String" resultType="com.ad.model.Admin">
+    <select id="checkAccount" parameterType="String" resultType="com.ad.model.Admin">
         SELECT * FROM admin where account = #{account}
     </select>
 </mapper>
