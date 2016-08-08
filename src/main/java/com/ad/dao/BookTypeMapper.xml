@@ -17,4 +17,5 @@
     <insert id="add" parameterType="com.sn.model.BookType">
         INSERT INTO booktype(name,picture) VALUES (#{name},#{picture})
     </insert>
+
 </mapper>

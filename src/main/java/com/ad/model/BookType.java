@@ -57,4 +57,5 @@ public class BookType {
         this.name = name;
         this.book_id = book_id;
     }
+
 }
