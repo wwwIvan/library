@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ad.dao.BookTypeMapper">
+    <resultMap id="com.ad.model.BookType" type="bookTypeResultMap">
+        <id column="bt_id" property="bt_id"/>
+        <result column="name" property="name"/>
+        <result column="picture" property="picture"/>
+        <collection property="book_id" ofType="com.ad.model.Book" column="bt_id">
+            <id property="b_id" column="b_id"/>
+            <result column="name" property="name"/>
+            <result column="author" property="author"/>
+            <result column="publicationDate" property="publication_date"/>
+            <result column="intro" property="intro"/>
+            <result column="picture" property="picture"/>
+        </collection>
+    </resultMap>
     <insert id="add" parameterType="com.sn.model.BookType">
         INSERT INTO booktype(name,picture) VALUES (#{name},#{picture})
     </insert>
