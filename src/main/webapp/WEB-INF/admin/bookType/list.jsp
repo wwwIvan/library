@@ -49,8 +49,8 @@
                                 <tr class="gradeX">
                                     <td>${bookType.name}</td>
                                     <td class="center">
-                                        <a href="${pageContext.request.contextPath}/bookType/updateUI">修改</a>
-                                        <a href="${pageContext.request.contextPath}/bookType/delete">删除</a>
+                                        <a href="${pageContext.request.contextPath}/bookType/updateUI?id=${bookType.bt_id}">修改</a>
+                                        <a href="${pageContext.request.contextPath}/bookType/delete?id=${bookType.bt_id}">删除</a>
                                     </td>
                                 </tr>
                             </c:forEach>

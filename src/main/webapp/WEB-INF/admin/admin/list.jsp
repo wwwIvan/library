@@ -25,8 +25,10 @@
 <%@include file="../prelude.jsp"%>
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 管理员列表</a>
-        <h1>管理员列表</h1>
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home">
+            </i> 管理员列表</a>
+            <h1>管理员列表</h1>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -40,20 +42,20 @@
                         <table class="table table-bordered data-table">
                             <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
+                                <th>管理员</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="gradeX">
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td class="center">4</td>
-                            </tr>
+                            <c:forEach items="${admin}" var="admin">
+                                <tr class="gradeX">
+                                    <td>${admin.account}</td>
+                                    <td class="center">
+                                        <a href="${pageContext.request.contextPath}/admin/updateUI?id=${admin.id}">修改</a>
+                                        <a href="${pageContext.request.contextPath}/admin/delete?id=${admin.id}">删除</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

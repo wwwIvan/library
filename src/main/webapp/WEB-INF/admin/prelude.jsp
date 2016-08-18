@@ -62,7 +62,7 @@
         <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">3</span></a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/bookType/list">图书类型管理</a></li>
-                <li><a href="calendar.html">图书信息管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/book/list">图书信息管理</a></li>
             </ul>
         </li>
 

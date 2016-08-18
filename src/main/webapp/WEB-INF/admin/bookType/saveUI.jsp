@@ -26,7 +26,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="${pageContext.request.contextPath}/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书中心</a>
+            <a href="${pageContext.request.contextPath}/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a>
             <a>图书类型编辑</a>
         </div>
         <h1>图书类型编辑</h1>
@@ -43,20 +43,27 @@
                         <h5>图书类型编辑</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/bookType/${ bookType.id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form">
+                        <form action="${pageContext.request.contextPath}/bookType/${ bookType_1.bt_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="bookType_form" enctype="multipart/form-data">
                             <div class="control-group">
-                                <label class="control-label">图片添加:</label>
-                                <div class="controls">
-                                    <input type="file" name="picture"/>
-                                </div>
+                                <label class="control-label">图片:</label>
+                                <c:choose>
+                                    <c:when test="${empty bookType_1.picture}">
+                                        <div class="controls">
+                                            <input type="file" name="picture"/>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/resources/file/bookType/${bookType_1.picture}" >
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">名字:</label>
-                                <div class="controls"><input type="text" class="span3" placeholder="请输入类型名" name="name" id="name"/></div>
+                                <div class="controls"><input type="text" class="span3" placeholder="请输入类型名" name="name" id="name" value="${bookType_1.name}"/></div>
                                 <span id="message"></span>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success">${ bookType.id == null ? '添加' : '修改'}</button>
+                                <button type="submit" class="btn btn-success">${ bookType_1.bt_id == null ? '添加' : '修改'}</button>
                             </div>
                         </form>
                     </div>
@@ -74,12 +81,10 @@
 <script src="${pageContext.request.contextPath}/resources/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/maruti.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/maruti.form_common.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("#book_form").validate({
+        $("#bookType_form").validate({
             rules:{
                 name:{
                     required: true,

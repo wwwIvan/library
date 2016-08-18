@@ -63,6 +63,7 @@ public class AdminController {
     @RequestMapping(value = "/login")
     public String login(String account,String password,Map<String, Object> map){
         map.put("logged",adminService.login(account,password));
+        map.put("admin",adminService.selectAll());
         return "admin/list";
     }
 

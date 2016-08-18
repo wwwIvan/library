@@ -1,9 +1,11 @@
 package com.ad.controller.bookType;
 
+import com.ad.model.BookType;
 import com.ad.service.BookTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
@@ -30,14 +32,27 @@ public class BookTypeController {
     }
 
     @RequestMapping(value = "/updateUI")
-    public String updateUI(){
+    public String updateUI(@RequestParam(value = "id") Long id,Map<String, Object> map){
+        map.put("bookType_1",bookTypeService.selectByPrimaryKey(id));
         return "bookType/saveUI";
     }
 
     @RequestMapping(value = "/add")
     public String add(MultipartFile picture,String name){
         bookTypeService.add(name,picture);
-        return "bookType/list";
+        return "redirect:/bookType/list";
+    }
+
+    @RequestMapping(value = "/update")
+    public String update(BookType bookType){
+        bookTypeService.updateByPrimaryKey(bookType);
+        return "redirect:/bookType/list";
+    }
+
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam(value = "id") Long id){
+        bookTypeService.deleteByPrimaryKey(id);
+        return "redirect:/bookType/list";
     }
 
 }

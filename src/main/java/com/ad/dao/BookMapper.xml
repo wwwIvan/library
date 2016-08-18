@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ad.dao.BookMapper">
-    <resultMap id="com.ad.model.Book" type="bookResultMap">
+    <resultMap id="bookResultMap" type="com.ad.model.Book">
             <id column="b_id" property="b_id"/>
             <result column="name" property="name"/>
             <result column="author" property="author"/>
@@ -14,5 +14,7 @@
                 <result column="picture" property="picture"/>
             </association>
     </resultMap>
-
+    <select id="selectBookFetchBookType" parameterType="Long" resultMap="bookResultMap">
+        SELECT bt.*,b.* FROM booktype bt,book b WHERE b.b_id = #{b_id} AND bt.bt_id = b.bt_id
+    </select>
 </mapper>

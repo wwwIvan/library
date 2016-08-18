@@ -49,6 +49,9 @@ public class FileUploadUtil {
      */
     public static void uploadBookTypePicture(MultipartFile uploadFile, BookType bookType){
         if (!uploadFile.isEmpty()){
+            if (bookType.getPicture()!=null){
+                deleteFile(bookType_PATH,bookType.getPicture());
+            }
             bookType.setPicture(uploadFile(uploadFile, bookType_PATH));
         }
     }
