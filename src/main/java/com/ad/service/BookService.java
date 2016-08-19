@@ -8,6 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface BookService extends BaseService<Book>{
 
-    public void add(String name, MultipartFile picture);
-
+    public void add(Book book, MultipartFile picture);
+    public void update(Book book, MultipartFile picture);
 }

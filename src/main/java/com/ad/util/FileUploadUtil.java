@@ -24,6 +24,10 @@ public class FileUploadUtil {
      */
     public final static String book_PATH = "/resources/file/book";
 
+    /**
+     * 附件的保存位置
+     */
+    public final static String ATTACHMENT_PATH = "/resources/file/attachment";
 /*    *//**
      * 上传App
      * @param uploadFile
@@ -63,6 +67,9 @@ public class FileUploadUtil {
      */
     public static void uploadBookPicture(MultipartFile uploadFile, Book book){
         if (!uploadFile.isEmpty()){
+            if (book.getPicture()!=null){
+                deleteFile(book_PATH,book.getPicture());
+            }
             book.setPicture(uploadFile(uploadFile, book_PATH));
         }
     }

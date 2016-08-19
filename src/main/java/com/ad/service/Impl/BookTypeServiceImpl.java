@@ -22,6 +22,16 @@ public class BookTypeServiceImpl extends BaseServiceImpl<BookType> implements Bo
         return bookTypeMapper;
     }
 
+    public void update(Long id, String name, MultipartFile picture) {
+        BookType bookType = new BookType();
+        bookType.setName(name);
+        bookType.setBt_id(id);
+        if(picture != null){
+            FileUploadUtil.uploadBookTypePicture(picture,bookType);
+        }
+        bookTypeMapper.update(bookType);
+    }
+
     public void add(String name, MultipartFile picture) {
         BookType bookType = new BookType();
         bookType.setName(name);

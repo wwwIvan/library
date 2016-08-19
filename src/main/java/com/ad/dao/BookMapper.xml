@@ -17,4 +17,20 @@
     <select id="selectBookFetchBookType" parameterType="Long" resultMap="bookResultMap">
         SELECT bt.*,b.* FROM booktype bt,book b WHERE b.b_id = #{b_id} AND bt.bt_id = b.bt_id
     </select>
+    <insert id="add" parameterType="com.ad.model.Book">
+        INSERT INTO book(b_id,name,bt_id,intro,author,publication_date,picture)
+        VALUES (#{b_id},#{name},#{bt_id},#{intro},#{author},#{publicationDate},#{picture})
+    </insert>
+    <update id="update" parameterType="com.ad.model.Book">
+        UPDATE book SET
+        name = #{name},
+        bt_id = #{bt_id},
+        intro = #{intro}
+        <if test="picture != null">
+            ,picture = #{picture},
+        </if>
+        publication_date = #{publicationDate},
+        author = #{author}
+        WHERE b_id = #{b_id}
+    </update>
 </mapper>

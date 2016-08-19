@@ -26,7 +26,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="${pageContext.request.contextPath}/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书信息管理</a>
+            <a href="${pageContext.request.contextPath}/book/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书信息管理</a>
             <a>图书信息编辑</a>
         </div>
         <h1>图书信息编辑</h1>
@@ -43,26 +43,74 @@
                         <h5>图书信息编辑</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/bookType/${ book.b_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form">
+                        <form action="${pageContext.request.contextPath}/book/${book_1.b_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form" enctype="multipart/form-data">
+                            <div class="control-group" hidden="hidden">
+                                <label class="control-label">id</label>
+                                <div class="controls"><input type="hidden" value="${book_1.b_id}" name="b_id"/></div>
+                            </div>
                             <div class="control-group">
-                                <label class="control-label">图片添加:</label>
-                                <div class="controls">
-                                    <input type="file" name="picture"/>
-                                </div>
+                                <label class="control-label">图片:</label>
+                                <c:choose>
+                                    <c:when test="${empty book_1.picture}">
+                                        <div class="controls">
+                                            <input type="file" name="picture"/>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/resources/file/book/${book_1.picture}" width="200px" height="150px">
+                                        <div class="controls">
+                                            <input type="file" name="picture"/>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">名字:</label>
-                                <div class="controls"><input type="text" class="span3" placeholder="请输入类型名" name="name" id="name"/></div>
+                                <div class="controls"><input type="text" class="span3" placeholder="请输入..." name="name" id="name" value="${book_1.name}"/></div>
                                 <span id="message"></span>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Normal textarea</label>
+                                <label class="control-label">作者:</label>
+                                <div class="controls"><input type="text" class="span20" placeholder="请输入..." name="author" value="${book_1.author}"/></div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">出版日期:</label>
+                                <div class="controls"><input type="text" class="span20" placeholder="请输入(格式：YYYY-MM-DD)" name="publicationDate" value="${book_1.publicationDate}"/></div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">图书类型:</label>
+                                <div class="controls ">
+                                    <select name="bt_id">
+                                        <c:choose>
+                                            <c:when test="${empty book_1}">
+                                                <c:forEach items="${bookType}" var="bookType">
+                                                    <option value="${bookType.bt_id}">${bookType.name}</option>
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forEach items="${bookType_1}" var="bookType_1">
+                                                    <c:choose>
+                                                        <c:when test="${bookType_1.bt_id == book_1.bt_id}">
+                                                            <option value="${bookType_1.bt_id}" selected="selected">${bookType_1.name}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${bookType_1.bt_id}">${bookType_1.name}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">作品介绍</label>
                                 <div class="controls">
-                                    <textarea class="span20"  placeholder="作品介绍" id="introduction" name="intro"></textarea>
+                                    <textarea class="span20"  placeholder="作品介绍" id="introduction" name="intro">${book_1.intro}</textarea>
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success">${ book.b_id == null ? '添加' : '修改'}</button>
+                                <button type="submit" class="btn btn-success">${book_1.b_id == null ? '添加' : '修改'}</button>
                             </div>
                         </form>
                     </div>
@@ -90,11 +138,25 @@
             rules:{
                 name:{
                     required: true,
+                },
+                author:{
+                    required:true,
+                },
+                publicationDate:{
+                    required:true,
+                    dateISO:true,
                 }
             },
             messages:{
                 name: {
                     required: "请输入类型名",
+                },
+                author:{
+                    required:"请输入作者",
+                },
+                publicationDate:{
+                    required:"请输入出版日期",
+                    dateISO:"必须符合（YYYY-MM-DD）格式",
                 }
             }
         })
@@ -112,7 +174,7 @@
             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Styles', 'Format', 'Font', 'FontSize','LineHeight']
         ],
-        filebrowserImageUploadUrl: "${pageContext.request.contextPath}/admin/attachment/fileUpload"
+        filebrowserImageUploadUrl: "${pageContext.request.contextPath}/attachment/fileUpload"
     } );
 </script>
 </body>

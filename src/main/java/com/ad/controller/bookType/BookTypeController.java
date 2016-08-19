@@ -1,6 +1,5 @@
 package com.ad.controller.bookType;
 
-import com.ad.model.BookType;
 import com.ad.service.BookTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,8 +43,8 @@ public class BookTypeController {
     }
 
     @RequestMapping(value = "/update")
-    public String update(BookType bookType){
-        bookTypeService.updateByPrimaryKey(bookType);
+    public String update(Long bt_id,String name,MultipartFile picture){
+        bookTypeService.update(bt_id,name,picture);
         return "redirect:/bookType/list";
     }
 

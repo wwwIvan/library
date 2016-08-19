@@ -191,6 +191,14 @@
         </dependency>
         <!-- hibernate-validator end -->
 
+        <!-- 使用poi实现Excel-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <!-- 使用poi实现Excel end-->
+
     </dependencies>
     <build>
         <!-- 把mybatis的mapper XML 文件放到编译目录

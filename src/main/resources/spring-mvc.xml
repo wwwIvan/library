@@ -19,8 +19,9 @@
     <mvc:resources location="/resources/js/" mapping="/resources/js/**"/>
     <mvc:resources location="/resources/img/" mapping="/resources/img/**"/>
     <mvc:resources location="/resources/images/" mapping="/resources/images/**"/>
-    <mvc:resources location="/resources/file/" mapping="/resources/file/**/**.jpg"/>
-    <mvc:resources location="/resources/file/" mapping="/resources/file/**/*.html"/>
+    <mvc:resources location="/resources/ckeditor/" mapping="/resources/ckeditor/**"/>
+    <mvc:resources location="/" mapping="/**/*.jpg"/>
+    <mvc:resources location="/" mapping="/**/*.html"/>
 
     <!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

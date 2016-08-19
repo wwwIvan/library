@@ -8,4 +8,5 @@ import com.ad.util.BaseMapper;
  */
 public interface BookMapper extends BaseMapper<Book> {
     public void add(Book book);
+    public void update(Book book);
 }

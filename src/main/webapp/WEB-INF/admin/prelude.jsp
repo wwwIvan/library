@@ -57,9 +57,14 @@
             </ul>
         </li>
         <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-        <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+        <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>书籍信息的Excel表</span> <span class="label">2</span></a>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/excel/upload">导入</a></li>
+                <li><a href="${pageContext.request.contextPath}/book/download">导出</a></li>
+            </ul>
+        </li>
 
-        <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">3</span></a>
+        <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">2</span></a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/bookType/list">图书类型管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/book/list">图书信息管理</a></li>

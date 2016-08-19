@@ -44,6 +44,10 @@
                     </div>
                     <div class="widget-content nopadding">
                         <form action="${pageContext.request.contextPath}/bookType/${ bookType_1.bt_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="bookType_form" enctype="multipart/form-data">
+                            <div class="control-group" hidden="hidden">
+                                <label class="control-label">id</label>
+                                <div class="controls"><input type="hidden" value="${bookType_1.bt_id}" name="bt_id"/></div>
+                            </div>
                             <div class="control-group">
                                 <label class="control-label">图片:</label>
                                 <c:choose>
@@ -53,7 +57,10 @@
                                         </div>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="${pageContext.request.contextPath}/resources/file/bookType/${bookType_1.picture}" >
+                                        <img src="${pageContext.request.contextPath}/resources/file/bookType/${bookType_1.picture}" width="200px" height="150px">
+                                        <div class="controls">
+                                            <input type="file" name="picture" value="${bookType_1.picture}"/>
+                                        </div>
                                     </c:otherwise>
                                 </c:choose>
                             </div>

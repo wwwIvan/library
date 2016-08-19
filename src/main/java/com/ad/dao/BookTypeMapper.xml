@@ -20,4 +20,12 @@
     <insert id="add" parameterType="com.ad.model.BookType">
         INSERT INTO booktype(name,picture) VALUES (#{name},#{picture})
     </insert>
+    <update id="update" parameterType="com.ad.model.BookType">
+        UPDATE booktype SET
+        name = #{name}
+        <if test="picture != null">
+            ,picture = #{picture}
+        </if>
+        WHERE bt_id = #{bt_id}
+    </update>
 </mapper>
