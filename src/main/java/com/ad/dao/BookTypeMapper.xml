@@ -9,13 +9,13 @@
             <id property="b_id" column="b_id"/>
             <result column="name" property="name"/>
             <result column="author" property="author"/>
-            <result column="publicationDate" property="publication_date"/>
+            <result column="publication_date" property="publicationDate"/>
             <result column="intro" property="intro"/>
             <result column="picture" property="picture"/>
         </collection>
     </resultMap>
     <select id="selectBookTypeFetchBook" parameterType="Long" resultMap="bookTypeResultMap">
-        SELECT bt.*,b.* FROM booktype bt,book b WHERE bt.bt_id = #{bt_id} AND bt.bt_id = b.bt_id
+        SELECT bt.bt_id,b.* FROM booktype bt,book b WHERE bt.bt_id = #{bt_id} AND bt.bt_id = b.bt_id
     </select>
     <insert id="add" parameterType="com.ad.model.BookType">
         INSERT INTO booktype(name,picture) VALUES (#{name},#{picture})

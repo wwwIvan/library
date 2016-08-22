@@ -72,13 +72,10 @@ public class ExcelController {
                 row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
                 b_id=row.getCell(0).getStringCellValue();
             }
-            System.out.println(b_id);
             cell=row.getCell(1);
             name=cell.getRichStringCellValue().toString();
-            System.out.println(name);
             cell=row.getCell(2);
             author=cell.getRichStringCellValue().toString();
-            System.out.println(author);
             cell=row.getCell(3);
             publicationDate=cell.getRichStringCellValue().toString();
             cell=row.getCell(4);

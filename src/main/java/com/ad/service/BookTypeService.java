@@ -9,5 +9,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface BookTypeService extends BaseService<BookType>{
     public void update(Long bt_id,String name,MultipartFile picture);
     public void add(String name,MultipartFile picture);
-
+    public BookType selectBookTypeFetchBook(Long bt_id);
 }

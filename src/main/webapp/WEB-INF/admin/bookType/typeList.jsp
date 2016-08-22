@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Ivan
-  Date: 2016/8/2
-  Time: 21:01
+  Date: 2016/8/22
+  Time: 14:20
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,8 +25,8 @@
 <%@include file="../prelude.jsp"%>
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">图书管理</a> </div>
-        <h1>图书管理</h1>
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">图书类型管理</a> </div>
+        <h1>图书类型管理</h1>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -34,7 +34,7 @@
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="icon"><i class="icon-th"></i></span>
-                        <h5>图书管理</h5>
+                        <h5>图书类型管理</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered data-table">
@@ -42,31 +42,25 @@
                             <tr>
                                 <th>名称</th>
                                 <th>作者</th>
-                                <th>类型</th>
+                                <th>出版日期</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requestScope.book}" var="book">
-                                <c:forEach items="${requestScope.bookType}" var="bookType">
-                                    <tr class="gradeX">
-                                        <td>${book.name}</td>
-                                        <td>${book.author}</td>
-                                        <td>
-                                            <c:if test="${book.bt_id == bookType.bt_id}">
-                                                ${bookType.name}
-                                            </c:if>
-                                        </td>
-                                        <td class="center">
-                                            <a href="${pageContext.request.contextPath}/book/updateUI?id=${book.b_id}">修改</a>
-                                            <a href="${pageContext.request.contextPath}/book/delete?id=${book.b_id}">删除</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                            <c:forEach items="${requestScope.typeList}" var="book_id">
+                                <tr class="gradeX">
+                                    <td>${book_id.name}</td>
+                                    <td>${book_id.author}</td>
+                                    <td>${book_id.publicationDate}</td>
+                                    <td class="center">
+                                        <a href="${pageContext.request.contextPath}/book/updateUI?id=${book_id.b_id}">修改</a>
+                                        <a href="${pageContext.request.contextPath}/book/delete?id=${book_id.b_id}">删除</a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/addUI">添加</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/bookType/addUI">添加</a>
                     </div>
                 </div>
             </div>
@@ -86,4 +80,5 @@
 <script src="${pageContext.request.contextPath}/resources/js/maruti.tables.js"></script>
 </body>
 </html>
+
 

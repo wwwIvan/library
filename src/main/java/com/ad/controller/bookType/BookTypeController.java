@@ -19,6 +19,13 @@ public class BookTypeController {
     @Autowired
     private BookTypeService bookTypeService;
 
+    @RequestMapping(value = "/typeList")
+    public String typeList(Map<String, Object> map,@RequestParam(value = "id") Long bt_id){
+        map.put("typeList",bookTypeService.selectBookTypeFetchBook(bt_id).getBook_id());
+        map.put("bookType",bookTypeService.selectAll());
+        return "bookType/typeList";
+    }
+
     @RequestMapping(value = "/list")
     public String list(Map<String, Object> map){
         map.put("bookType",bookTypeService.selectAll());

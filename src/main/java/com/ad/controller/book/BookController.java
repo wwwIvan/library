@@ -27,6 +27,7 @@ public class BookController {
     @RequestMapping(value = "/list")
     public String list(Map<String, Object> map){
         map.put("book",bookService.selectAll());
+        map.put("bookType",bookTypeService.selectAll());
         return "book/list";
     }
 
