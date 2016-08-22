@@ -38,7 +38,7 @@ public class Book {
 
     public Book(){}
 
-    public Book(String b_id, String name, String author, String publicationDate, String intro, String picture, Long bt_id, BookType bookType) {
+    public Book(String b_id, String name, String author, String publicationDate, String intro, String picture, Long bt_id) {
         this.b_id = b_id;
         this.name = name;
         this.author = author;
@@ -46,7 +46,16 @@ public class Book {
         this.intro = intro;
         this.picture = picture;
         this.bt_id = bt_id;
-        this.bookType = bookType;
+    }
+
+    public Book(String name, String author, String publicationDate, String intro, String picture, Long bt_id) {
+        this.b_id = b_id;
+        this.name = name;
+        this.author = author;
+        this.publicationDate = publicationDate;
+        this.intro = intro;
+        this.picture = picture;
+        this.bt_id = bt_id;
     }
 
     public Long getBt_id() {
