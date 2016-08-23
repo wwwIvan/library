@@ -1,5 +1,5 @@
 <html>
 <body>
-<jsp:forward page="${pageContext.request.contextPath}/admin/loginUI"/>
+<h4>Hello</h4>
 </body>
 </html>

@@ -60,7 +60,7 @@ public class BookController {
 
     @RequestMapping(value = "/update")
     public String update(String b_id,String name, Long bt_id, String author, String publicationDate,
-                         String intro,@RequestParam(value = "picture", required = false) MultipartFile picture){
+                         String intro,MultipartFile picture){
         Book book = bookService.selectByPrimaryKey(b_id);
         book.setName(name);
         book.setBt_id(bt_id);

@@ -22,7 +22,7 @@
 <c:choose>
     <c:when test="${sessionScope.logged != null}">
         <div id="user-nav" class="navbar navbar-inverse"><ul class="nav">
-            <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
+            <li class=""><a title="" href="${pageContext.request.contextPath}/admin/logout"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
         </ul>
         </div>
     </c:when>
@@ -44,34 +44,19 @@
 <div id="sidebar">
     <a href="#" class="visible-phone"><i class="icon icon-th-list"></i> Common Elements</a>
     <ul>
-        <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>管理员列表</span></a></li>
-        <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>图书馆简介</span></a> </li>
-        <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
-        <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-        <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-        <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="form-common.html">Basic Form</a></li>
-                <li><a href="form-validation.html">Form with Validation</a></li>
-                <li><a href="form-wizard.html">Form with Wizard</a></li>
-            </ul>
-        </li>
-        <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/list"><i class="icon icon-home"></i> <span>管理员列表</span></a></li>
         <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>书籍信息的Excel表</span> <span class="label">2</span></a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/excel/uploadUI">导入</a></li>
                 <li><a href="${pageContext.request.contextPath}/excel/download">导出</a></li>
             </ul>
         </li>
-
         <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">2</span></a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/bookType/list">图书类型管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/book/list">图书信息管理</a></li>
             </ul>
         </li>
-
     </ul>
-
 </div>
 <!--close-left-menu-stats-sidebar-->

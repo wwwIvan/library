@@ -25,8 +25,8 @@
 <%@include file="../prelude.jsp"%>
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">图书类型管理</a> </div>
-        <h1>图书类型管理</h1>
+        <div id="breadcrumb"> <a href="${pageContext.request.contextPath}/bookType/list" title="图书类型管理" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a></div>
+        <h1>${requestScope.bookType.name}类型图书管理</h1>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -40,27 +40,28 @@
                         <table class="table table-bordered data-table">
                             <thead>
                             <tr>
+                                <th>图片</th>
                                 <th>名称</th>
                                 <th>作者</th>
+                                <th>类型</th>
                                 <th>出版日期</th>
-                                <th>操作</th>
+                                <th>简介</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${requestScope.typeList}" var="book_id">
                                 <tr class="gradeX">
+                                    <td><img src="${pageContext.request.contextPath}/resources/file/book/${book_id.picture}" width="200px" height="150px"></td>
                                     <td>${book_id.name}</td>
                                     <td>${book_id.author}</td>
+                                    <td>${requestScope.bookType.name}</td>
                                     <td>${book_id.publicationDate}</td>
-                                    <td class="center">
-                                        <a href="${pageContext.request.contextPath}/book/updateUI?id=${book_id.b_id}">修改</a>
-                                        <a href="${pageContext.request.contextPath}/book/delete?id=${book_id.b_id}">删除</a>
-                                    </td>
+                                    <td>${book_id.intro}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/bookType/addUI">添加</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/addUI">添加</a>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,6 +23,17 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    /**
+     * 移除@SessionAttributes的缓存，但不清楚HttpSession的缓存
+     * @param sessionStatus
+     * @return
+     */
+    @RequestMapping(value = "/logout")
+    public String logout(SessionStatus sessionStatus){
+        sessionStatus.setComplete();
+        return "admin/list";
+    }
 
     @RequestMapping(value = "/registerUI")
     public String registerUI(){
@@ -68,7 +80,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/list")
-    public String list(){
+    public String list(Map<String, Object> map){
+        map.put("admin",adminService.selectAll());
         return "admin/list";
     }
 

@@ -20,6 +20,7 @@
     <mvc:resources location="/resources/img/" mapping="/resources/img/**"/>
     <mvc:resources location="/resources/images/" mapping="/resources/images/**"/>
     <mvc:resources location="/resources/ckeditor/" mapping="/resources/ckeditor/**"/>
+    <mvc:resources location="/resources/messenger/" mapping="/resources/messenger/**"/>
     <mvc:resources location="/" mapping="/**/*.jpg"/>
     <mvc:resources location="/" mapping="/**/*.html"/>
 
@@ -65,5 +66,30 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
     </bean>
+
+    <!--管理员端session验证地址 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <mvc:exclude-mapping path="/resources/css/**"/>
+            <mvc:exclude-mapping path="/resources/js/**"/>
+            <mvc:exclude-mapping path="/resources/images/**"/>
+            <mvc:exclude-mapping path="/resources/img/**"/>
+            <mvc:exclude-mapping path="/resources/ckeditor/**"/>
+            <mvc:exclude-mapping path="/resources/messenger/**"/>
+            <bean class="com.ad.Interceptor.AdminInterceptor">
+                <property name="allowUrls">
+                    <list>
+                        <value>/admin/loginUI</value>
+                        <value>/admin/login</value>
+                        <value>/admin/registerUI</value>
+                        <value>/admin/register</value>
+                        <value>/admin/checkAccount</value>
+                        <value>/admin/check</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

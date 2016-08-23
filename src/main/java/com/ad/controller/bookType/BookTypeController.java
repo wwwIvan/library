@@ -22,7 +22,7 @@ public class BookTypeController {
     @RequestMapping(value = "/typeList")
     public String typeList(Map<String, Object> map,@RequestParam(value = "id") Long bt_id){
         map.put("typeList",bookTypeService.selectBookTypeFetchBook(bt_id).getBook_id());
-        map.put("bookType",bookTypeService.selectAll());
+        map.put("bookType",bookTypeService.selectByPrimaryKey(bt_id));
         return "bookType/typeList";
     }
 

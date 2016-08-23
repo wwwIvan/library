@@ -48,21 +48,21 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${requestScope.book}" var="book">
-                                <c:forEach items="${requestScope.bookType}" var="bookType">
                                     <tr class="gradeX">
                                         <td>${book.name}</td>
                                         <td>${book.author}</td>
                                         <td>
-                                            <c:if test="${book.bt_id == bookType.bt_id}">
-                                                ${bookType.name}
-                                            </c:if>
+                                            <c:forEach items="${requestScope.bookType}" var="bookType">
+                                                <c:if test="${book.bt_id == bookType.bt_id}">
+                                                    ${bookType.name}
+                                                </c:if>
+                                            </c:forEach>
                                         </td>
                                         <td class="center">
                                             <a href="${pageContext.request.contextPath}/book/updateUI?id=${book.b_id}">修改</a>
                                             <a href="${pageContext.request.contextPath}/book/delete?id=${book.b_id}">删除</a>
                                         </td>
                                     </tr>
-                                </c:forEach>
                             </c:forEach>
                             </tbody>
                         </table>

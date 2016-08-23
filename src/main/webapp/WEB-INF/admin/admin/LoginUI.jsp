@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maruti-login.css" />
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger.css"  rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger-theme-air.css"  rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="logo">
@@ -60,13 +62,14 @@
         </div>
     </form>
 </div>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/maruti.login.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/browser.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
-    <script type="text/javascript">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/maruti.login.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/browser.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/messages_zh.js"></script>
+<script src="${pageContext.request.contextPath}/resources/messenger/build/js/messenger.min.js"></script>
+<script type="text/javascript">
     $(function () {
         $("#loginform").validate({
             rules:{
@@ -96,13 +99,29 @@
                 password:{
                     required: "请输入密码",
                     remote:"账号或密码不正确"
-                },
+                }
             }
         })
     })
-    </script>
+</script>
 </body>
-
-
+<c:if test="${result!=null}">
+    <script>
+        $().ready(function(){
+            var success=${result.success};
+            var msg='${result.msg}';
+            var type="error";
+            if(success=true){
+                type="success"
+            }
+            Messenger.options = {
+                extraClasses: 'messenger-fixed messenger-theme-air messenger-on-top messenger-on-right',
+                theme: 'future'
+            }
+            $.globalMessenger().post({  message:"提示："+ msg,
+                type: 'error',
+                showCloseButton: true})
+        })
+    </script>
+</c:if>
 </html>
-
