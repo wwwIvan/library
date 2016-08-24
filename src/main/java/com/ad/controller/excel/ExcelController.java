@@ -35,7 +35,7 @@ public class ExcelController {
 
     @RequestMapping(value = "/uploadUI")
     public String uploadUI(){
-        return "excel/uploadUI";
+        return "admin/excel/uploadUI";
     }
 
     /**
@@ -112,13 +112,13 @@ public class ExcelController {
         List<Book> dataset = new ArrayList<Book>();
         OutputStream out = response.getOutputStream();
         for(Book b:books){
-            byte[] body = null;
-            File file = new File(session.getServletContext().getRealPath("/resources/file/book/"+b.getPicture()));
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
-            body = new byte[bis.available()];
-            while((bis.read(body)) != -1) {
-                //将图片数据存放到缓冲数组中
-            }
+//            byte[] body = null;
+//            File file = new File(session.getServletContext().getRealPath("/resources/file/book/"+b.getPicture()));
+//            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+//            body = new byte[bis.available()];
+//            while((bis.read(body)) != -1) {
+//                //将图片数据存放到缓冲数组中
+//            }
             dataset.add(new Book(b.getB_id(),b.getName(),b.getAuthor(),b.getPublicationDate(),b.getIntro(),b.getPicture(),b.getBt_id()));
         }
         ex.exportExcel(headers, dataset, out);

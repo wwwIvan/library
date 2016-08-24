@@ -48,7 +48,7 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setIntro(intro);
         bookService.add(book,picture);
-        return "redirect:admin//book/list";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/updateUI")
@@ -68,13 +68,13 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setIntro(intro);
         bookService.add(book,picture);
-        return "redirect:admin/book/list";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/delete")
     public String delete(@RequestParam(value = "id") String id){
         bookService.deleteByPrimaryKey(id);
-        return "redirect:admin/book/list";
+        return "redirect:list";
     }
 
 }

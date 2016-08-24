@@ -5,7 +5,7 @@
             <id column="b_id" property="b_id"/>
             <result column="name" property="name"/>
             <result column="author" property="author"/>
-            <result column="publicationDate" property="publication_date"/>
+            <result column="publication_date" property="publicationDate"/>
             <result column="intro" property="intro"/>
             <result column="picture" property="picture"/>
             <association property="bookType" javaType="com.ad.model.BookType">
@@ -16,6 +16,9 @@
     </resultMap>
     <select id="selectBookFetchBookType" parameterType="Long" resultMap="bookResultMap">
         SELECT bt.*,b.* FROM booktype bt,book b WHERE b.b_id = #{b_id} AND bt.bt_id = b.bt_id
+    </select>
+    <select id="selectBookByForeignKey" parameterType="Long" resultType="com.ad.model.Book">
+        SELECT * FROM book WHERE bt_id = #{bt_id}
     </select>
     <insert id="add" parameterType="com.ad.model.Book">
         INSERT INTO book(b_id,name,bt_id,intro,author,publication_date,picture)
@@ -33,4 +36,7 @@
         author = #{author}
         WHERE b_id = #{b_id}
     </update>
+    <delete id="deleteByForeignKey" parameterType="Long">
+        DELETE FROM book WHERE bt_id=#{bt_id}
+    </delete>
 </mapper>

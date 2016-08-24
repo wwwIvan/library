@@ -5,13 +5,16 @@
   Time: 23:47
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Reviews</title>
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="js/jquery.min.js"></script>
+    <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -33,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 reviews-grids">
                     <div class="review">
                         <div class="movie-pic">
-                            <a href="single.html"><img src="images/r4.jpg" alt="" /></a>
+                            <a href="single.html"><img src="${pageContext.request.contextPath}/images/r4.jpg" alt="" /></a>
                         </div>
                         <div class="review-info">
                             <a class="span" href="single.html">Lorem  <i>Movie Review</i></a>
@@ -285,16 +288,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     });
                 });
             </script>
-            <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+            <script type="${pageContext.request.contextPath}/text/javascript" src="js/jquery.flexisel.js"></script>
         </div>
-        <div class="footer">
-            <h6>Disclaimer : </h6>
-            <p class="claim">This is a freebies and not an official website, I have no intention of disclose any movie, brand, news.My goal here is to train or excercise my skill and share this freebies.</p>
-            <a href="example@mail.com">example@mail.com</a>
-            <div class="copyright">
-                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="手机网站模板">手机网站模板</a> </p>
-            </div>
-        </div>
+        <%@ include file="footer.jsp"%>
     </div>
     <div class="clearfix"></div>
 </div>

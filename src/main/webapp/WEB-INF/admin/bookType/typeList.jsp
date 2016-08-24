@@ -49,7 +49,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requestScope.typeList}" var="book_id">
+                            <c:forEach items="${requestScope.typeList.book_id}" var="book_id">
                                 <tr class="gradeX">
                                     <td><img src="${pageContext.request.contextPath}/resources/file/book/${book_id.picture}" width="200px" height="150px"></td>
                                     <td>${book_id.name}</td>

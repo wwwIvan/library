@@ -38,12 +38,14 @@
                 <a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
             </div>
         </div>
+        <br>
         <div class="review-slider">
             <ul id="flexiselDemo1">
                 <c:forEach items="${requestScope.book}" var="book">
                     <li><img src="${pageContext.request.contextPath}/resources/file/book/${book.picture}" alt=""/></li>
                 </c:forEach>
             </ul>
+            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费模板</a></div>
             <script type="text/javascript">
                 $(window).load(function() {
                     $("#flexiselDemo1").flexisel({
@@ -74,10 +76,7 @@
         </div>
         <div class="video">
         </div>
-        <div class="footer">
-            <h6>网站简介 : </h6>
-            <p class="claim">通过Aode Library官网，凭借个人ID订阅图书，即可免去到图书馆去租借的繁琐步骤，为广大读者提供便利！</p>
-        </div>
+        <%@ include file="footer.jsp"%>
     </div>
 </div>
 <div class="clearfix"></div>

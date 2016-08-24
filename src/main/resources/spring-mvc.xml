@@ -74,43 +74,31 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/stage/**" />
-            <mvc:exclude-mapping path="/css/**"/>
-            <mvc:exclude-mapping path="/js/**"/>
-            <mvc:exclude-mapping path="/images/**"/>
-            <mvc:exclude-mapping path="/resources/css/**"/>
-            <mvc:exclude-mapping path="/resources/js/**"/>
-            <mvc:exclude-mapping path="/resources/images/**"/>
-            <mvc:exclude-mapping path="/resources/img/**"/>
-            <mvc:exclude-mapping path="/resources/ckeditor/**"/>
-            <mvc:exclude-mapping path="/resources/messenger/**"/>
             <bean class="com.ad.Interceptor.UserInterceptor">
                 <property name="allowUrls">
                     <list>
                         <value>/stage/adLibrary</value>
                         <value>/stage/loginUI</value>
+                        <value>/stage/login</value>
                         <value>/stage/registerUI</value>
-                        <value>/stage/adLibrary</value>
+                        <value>/stage/register</value>
+                        <value>/stage/check</value>
+                        <value>/stage/checkAccount</value>
                     </list>
                 </property>
             </bean>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/admin/**" />
-            <mvc:exclude-mapping path="/resources/css/**"/>
-            <mvc:exclude-mapping path="/resources/js/**"/>
-            <mvc:exclude-mapping path="/resources/images/**"/>
-            <mvc:exclude-mapping path="/resources/img/**"/>
-            <mvc:exclude-mapping path="/resources/ckeditor/**"/>
-            <mvc:exclude-mapping path="/resources/messenger/**"/>
             <bean class="com.ad.Interceptor.AdminInterceptor">
                 <property name="allowUrls">
                     <list>
-                        <value>/admin/loginUI</value>
-                        <value>/admin/login</value>
-                        <value>/admin/registerUI</value>
-                        <value>/admin/register</value>
-                        <value>/admin/checkAccount</value>
-                        <value>/admin/check</value>
+                        <value>/admin/admin/loginUI</value>
+                        <value>/admin/admin/login</value>
+                        <value>/admin/admin/registerUI</value>
+                        <value>/admin/admin/register</value>
+                        <value>/admin/admin/checkAccount</value>
+                        <value>/admin/admin/check</value>
                     </list>
                 </property>
             </bean>

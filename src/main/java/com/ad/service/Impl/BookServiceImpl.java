@@ -53,6 +53,21 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
         bookMapper.update(book);
     }
 
+    @Override
+    public void deleteByForeignKey(Long bt_id) {
+        bookMapper.deleteByForeignKey(bt_id);
+    }
+
+    @Override
+    public List<Book> selectBookByForeignKey(Long bt_id) {
+        return bookMapper.selectBookByForeignKey(bt_id);
+    }
+
+    @Override
+    public Book selectBookFetchBookType(Long b_id) {
+        return bookMapper.selectBookFetchBookType(b_id);
+    }
+
     public void add(Book book, MultipartFile picture) {
         if(picture != null) {
             FileUploadUtil.uploadBookPicture(picture,book);

@@ -14,7 +14,6 @@ public class User {
     private String account;
     private String password;
     private String userName;
-    private String sex;
     private String idCard;
 
     public String getUserName() {
@@ -49,13 +48,6 @@ public class User {
         this.password = password;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public String getIdCard() {
         return idCard;
@@ -65,12 +57,11 @@ public class User {
         this.idCard = idCard;
     }
 
-    public User(Long id, String account, String password, String userName, String sex, String idCard) {
+    public User(Long id, String account, String password, String userName, String idCard) {
         this.id = id;
         this.account = account;
         this.password = password;
         this.userName = userName;
-        this.sex = sex;
         this.idCard = idCard;
     }
 

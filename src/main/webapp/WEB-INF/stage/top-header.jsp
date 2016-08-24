@@ -12,7 +12,6 @@
     <div class="logo">
         <a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png" alt="" /></a>
         <p>Aode Library</p>
-        <a class="video" href="${pageContext.request.contextPath}/stage/loginUI"><i class="video1"></i>登录</a>
     </div>
     <div class="search">
         <form>

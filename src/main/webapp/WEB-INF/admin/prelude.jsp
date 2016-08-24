@@ -22,14 +22,14 @@
 <c:choose>
     <c:when test="${sessionScope.logged != null}">
         <div id="user-nav" class="navbar navbar-inverse"><ul class="nav">
-            <li class=""><a title="" href="${pageContext.request.contextPath}/admin/logout"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
+            <li class=""><a title="" href="${pageContext.request.contextPath}/admin/admin/logout"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
         </ul>
         </div>
     </c:when>
     <c:otherwise>
         <div id="user-nav" class="navbar navbar-inverse">
             <ul class="nav">
-                <li class="" ><a title="" href="${pageContext.request.contextPath}/admin/loginUI"><i class="icon icon-user"></i> <span class="text">登录</span></a></li>
+                <li class="" ><a title="" href="${pageContext.request.contextPath}/admin/admin/loginUI"><i class="icon icon-user"></i> <span class="text">登录</span></a></li>
             </ul>
         </div>
     </c:otherwise>
