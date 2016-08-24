@@ -44,17 +44,17 @@
 <div id="sidebar">
     <a href="#" class="visible-phone"><i class="icon icon-th-list"></i> Common Elements</a>
     <ul>
-        <li class="active"><a href="${pageContext.request.contextPath}/admin/list"><i class="icon icon-home"></i> <span>管理员列表</span></a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/admin/list"><i class="icon icon-home"></i> <span>管理员列表</span></a></li>
         <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>书籍信息的Excel表</span> <span class="label">2</span></a>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/excel/uploadUI">导入</a></li>
-                <li><a href="${pageContext.request.contextPath}/excel/download">导出</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/excel/uploadUI">导入</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/excel/download">导出</a></li>
             </ul>
         </li>
         <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>图书中心</span> <span class="label">2</span></a>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/bookType/list">图书类型管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/book/list">图书信息管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/bookType/list">图书类型管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/book/list">图书信息管理</a></li>
             </ul>
         </li>
     </ul>

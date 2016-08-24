@@ -47,16 +47,16 @@
                             <tbody>
                             <c:forEach items="${requestScope.bookType}" var="bookType">
                                 <tr class="gradeX">
-                                    <td><a href="${pageContext.request.contextPath}/bookType/typeList?id=${bookType.bt_id}">${bookType.name}</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/admin/bookType/typeList?id=${bookType.bt_id}">${bookType.name}</a></td>
                                     <td class="center">
-                                        <a href="${pageContext.request.contextPath}/bookType/updateUI?id=${bookType.bt_id}">修改</a>
-                                        <a href="${pageContext.request.contextPath}/bookType/delete?id=${bookType.bt_id}">删除</a>
+                                        <a href="${pageContext.request.contextPath}/admin/bookType/updateUI?id=${bookType.bt_id}">修改</a>
+                                        <a href="${pageContext.request.contextPath}/admin/bookType/delete?id=${bookType.bt_id}">删除</a>
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/bookType/addUI">添加</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/bookType/addUI">添加</a>
                     </div>
                 </div>
             </div>

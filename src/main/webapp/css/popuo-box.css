@@ -1,9 +1,9 @@
 /* Styles for dialog window */
-#small-dialog,#small-dialog1{
-	background: white;
-	padding:20px 20px 30px 20px;
+#small-dialog,#small-dialog2,#small-dialog3,#small-dialog4{
+	background: #FFF;
+	padding:20px;
 	text-align: left;
-	max-width: 650px;
+	max-width: 700px;
 	margin: 40px auto;
 	position: relative;
 	text-align:center;
@@ -17,13 +17,8 @@
 	position: relative;
 	text-align:center;
 }
-a.play-icon.popup-with-zoom-anim img:hover {
-	opacity: 0.5;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-o-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-ms-transition:0.5s all;
+.signup h4 {
+	color: #000;
 }
 .portfolio-items{
 	text-align:center;
@@ -227,21 +222,24 @@ button::-moz-focus-inner {
   height: 44px;
   line-height: 44px;
   position: absolute;
- right: 0px;
-	top: -43px;
+  right: 0px;
+  top: 0px;
   text-decoration: none;
   text-align: center;
   padding: 0 0 18px 10px;
   color: white;
   font-style: normal;
   font-size: 28px;
-  outline:none;	
+  outline:none;
+  font-family: 'Open Sans', sans-serif;		
  }
   .mfp-close:hover, .mfp-close:focus {
     opacity: 1; }
 
 .mfp-close-btn-in .mfp-close {
-  color: #333333; }
+  color: #333333; 
+ background: #FFF;
+  }
 
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
@@ -251,78 +249,96 @@ button::-moz-focus-inner {
   padding-right: 6px;
   width: 100%; 
 }
-.login h3,.select-city h3{
-	margin:0 0 0.5em 0;
-	color: #003b64;
-	font-size:1.5em;
-	font-weight:700;
+.login h3,.signup h3{
+	margin:1em 0;
+	color: #000000;
+	font-weight: 700;
 }
-.select-city p {
-	font-size:1em;
-	font-weight:500;
-	margin-bottom:0.5em;
-}
-.confirmation input.email[type="text"], .confirmation input.email[type="text"] {
-  width: 90%;
-  padding: 10px;
-  background: #FFF;
-  margin: 10px 0;
-  outline: none;
-  color: #817F7F;
-  border: solid 1px #817F7F;
-  font-family: 'Open Sans', sans-serif;
-}
-.confirmation input[type="submit"]{
-  border: 0px;
-  padding: .5em 2em;
-  background: #003b64;
-  margin: 1em 0 0 0;
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-  text-transform: uppercase;
-  -webkit-appearance: none;
-  position: relative;
-  font-family: 'Open Sans', sans-serif;
-}
-.confirmation input[type="submit"]:hover {
-	color: #000;
-    background-color: #fff200;
+.login p{	
+	color:##000000;
+	font-size:14px;
+	text-align:center;
 }
 .login input[type="text"],.login input[type="password"]{
-	width:90%;
-	padding:5px;
-	margin:3px 0;x
-	border: 1px solid #a63d56;
+	width: 90%;
+	border: none;
+	padding: 12px;
+	margin: 3px 0;
+	color: #9F9F9F;
+	font-size: 14px;
+	border: solid 1px #9F9F9F;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	-ms-border-radius: 7px;
+	font-family: 'Open Sans', sans-serif;
 	outline: none !important;
+	-webkit-appearance: none;
 }
 .signup input[type="text"]{
-	width:70%;
-	margin:0 auto;
-	padding:5px;
-	margin:10px 0;
-	outline: none !important;
+	width: 44.5%;
+	padding: 10px;
+	margin: 10px 0;
+	outline: none;
+	color: #817F7F;
+	border: solid 1px #9F9F9F;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-webkit-appearance: none;
+}
+.signup input.password[type="text"] {
+	width: 90%;
+}
+.signup input.email[type="text"],.signup input[type="password"]{
+	width: 90%;
+	padding: 10px;
+	margin: 10px 0;
+	outline: none;
+	color: #817F7F;
+	border: solid 1px #9F9F9F;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-webkit-appearance: none;
 }
 .login input[type="submit"],.signup input[type="submit"]{
-	background:#cf0000;
-	border:0px;
-	padding:5px 10px;
-	margin:10px 10px;
-	outline:none;
-	color: #fff;
+	border: 0px;
+	padding: 8px;
+	margin: 10px 10px;
+	width: 90%;
+	outline: none;
+	font-size: 16px;
+	color: #9F9F9F;
+	font-weight: 700;
 	text-transform: uppercase;
-	
+	font-family: 'Open Sans', sans-serif;
+	border: solid 1px #9F9F9F;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-webkit-appearance: none;
 }
 .login input[type="submit"]:hover,.signup input[type="submit"]:hover{
-	background:#000;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
+	border: solid 1px #3EB5F1;
+	color: #3EB5F1;
 }
 @media all and (max-width:480px){
 	.comments-area textarea{
 		height:100px;
+	}
+	.login input[type="submit"], .signup input[type="submit"] {
 	}
 }
 @media all and (max-width:320px){
@@ -345,5 +361,11 @@ button::-moz-focus-inner {
 	.mfp-content iframe{
 		width:100%;
 		min-height:250px;
+	}
+	.login input[type="submit"], .signup input[type="submit"] {
+		font-size: 12px;
+	}
+	.signup input[type="text"] {
+		width: 90%;
 	}
 } 

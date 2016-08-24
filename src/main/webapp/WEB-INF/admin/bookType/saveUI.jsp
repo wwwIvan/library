@@ -43,7 +43,7 @@
                         <h5>图书类型编辑</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/bookType/${ bookType_1.bt_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="bookType_form" enctype="multipart/form-data">
+                        <form action="${pageContext.request.contextPath}/admin/bookType/${ bookType_1.bt_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="bookType_form" enctype="multipart/form-data">
                             <div class="control-group" hidden="hidden">
                                 <label class="control-label">id</label>
                                 <div class="controls"><input type="hidden" value="${bookType_1.bt_id}" name="bt_id"/></div>

@@ -59,14 +59,14 @@
                                             </c:forEach>
                                         </td>
                                         <td class="center">
-                                            <a href="${pageContext.request.contextPath}/book/updateUI?id=${book.b_id}">修改</a>
-                                            <a href="${pageContext.request.contextPath}/book/delete?id=${book.b_id}">删除</a>
+                                            <a href="${pageContext.request.contextPath}/admin/book/updateUI?id=${book.b_id}">修改</a>
+                                            <a href="${pageContext.request.contextPath}/admin/book/delete?id=${book.b_id}">删除</a>
                                         </td>
                                     </tr>
                             </c:forEach>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/addUI">添加</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/book/addUI">添加</a>
                     </div>
                 </div>
             </div>

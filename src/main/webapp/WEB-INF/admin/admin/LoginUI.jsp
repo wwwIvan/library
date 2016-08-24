@@ -25,7 +25,7 @@
     <img src="${pageContext.request.contextPath}/resources/img/login-logo.png" alt="" />
 </div>
 <div id="loginbox">
-    <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/admin/login">
+    <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/admin/admin/login">
         <div class="control-group normal_text"><h3>Library Admin Login</h3></div>
         <div class="control-group">
             <div class="controls">
@@ -43,7 +43,7 @@
         </div>
         <div class="form-actions">
             <span class="pull-left"><a href="#" class="flip-link btn btn-warning" id="to-recover">Lost password?</a></span>
-            <span class="pull-left"><a href="${pageContext.request.contextPath}/admin/registerUI" class="flip-link btn btn-warning">注册</a></span>
+            <span class="pull-left"><a href="${pageContext.request.contextPath}/admin/admin/registerUI" class="flip-link btn btn-warning">注册</a></span>
             <span class="pull-right"><input type="submit" class="btn btn-success" value="登录" /></span>
         </div>
     </form>
@@ -80,7 +80,7 @@
                     required: true,
                     remote:{
                         type:"post",
-                        url:"${pageContext.request.contextPath}/admin/check",
+                        url:"${pageContext.request.contextPath}/admin/admin/check",
                         data:{
                             account:function () {
                                 return $("#account").val();

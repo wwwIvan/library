@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by Ivan on 2016/8/6.
  */
 @Controller
-@RequestMapping(value = "/book")
+@RequestMapping(value = "admin/book")
 public class BookController {
 
     @Autowired
@@ -28,13 +28,13 @@ public class BookController {
     public String list(Map<String, Object> map){
         map.put("book",bookService.selectAll());
         map.put("bookType",bookTypeService.selectAll());
-        return "book/list";
+        return "admin/book/list";
     }
 
     @RequestMapping(value = "/addUI")
     public String addUI(Map<String, Object> map){
         map.put("bookType",bookTypeService.selectAll());
-        return "book/saveUI";
+        return "admin/book/saveUI";
     }
 
     @RequestMapping(value = "/add")
@@ -48,14 +48,14 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setIntro(intro);
         bookService.add(book,picture);
-        return "redirect:/book/list";
+        return "redirect:admin//book/list";
     }
 
     @RequestMapping(value = "/updateUI")
     public String updateUI(@RequestParam(value = "id") String id, Map<String, Object> map){
         map.put("book_1",bookService.selectByPrimaryKey(id));
         map.put("bookType_1",bookTypeService.selectAll());
-        return "book/saveUI";
+        return "admin/book/saveUI";
     }
 
     @RequestMapping(value = "/update")
@@ -68,13 +68,13 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setIntro(intro);
         bookService.add(book,picture);
-        return "redirect:/book/list";
+        return "redirect:admin/book/list";
     }
 
     @RequestMapping(value = "/delete")
     public String delete(@RequestParam(value = "id") String id){
         bookService.deleteByPrimaryKey(id);
-        return "redirect:/book/list";
+        return "redirect:admin/book/list";
     }
 
 }

@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @Controller
 @SessionAttributes({"logged"})
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "admin/admin")
 public class AdminController {
 
     @Autowired
@@ -32,18 +32,18 @@ public class AdminController {
     @RequestMapping(value = "/logout")
     public String logout(SessionStatus sessionStatus){
         sessionStatus.setComplete();
-        return "admin/list";
+        return "admin/admin/list";
     }
 
     @RequestMapping(value = "/registerUI")
     public String registerUI(){
-        return "admin/registerUI";
+        return "admin/admin/registerUI";
     }
 
     @RequestMapping(value = "/register")
     public String register(Admin admin){
         adminService.insert(admin);
-        return "admin/list";
+        return "admin/admin/list";
     }
 
     @RequestMapping(value = "/checkAccount")
@@ -68,7 +68,7 @@ public class AdminController {
 
     @RequestMapping(value = "/loginUI")
     public String loginUI(){
-        return "admin/loginUI";
+        return "admin/admin/loginUI";
     }
 
 
@@ -76,13 +76,13 @@ public class AdminController {
     public String login(String account,String password,Map<String, Object> map){
         map.put("logged",adminService.login(account,password));
         map.put("admin",adminService.selectAll());
-        return "admin/list";
+        return "admin/admin/list";
     }
 
     @RequestMapping(value = "/list")
     public String list(Map<String, Object> map){
         map.put("admin",adminService.selectAll());
-        return "admin/list";
+        return "admin/admin/list";
     }
 
 

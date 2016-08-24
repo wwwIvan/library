@@ -42,7 +42,7 @@
                         <h5>Excel表导入</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/excel/upload" method="post" class="form-horizontal" id="excel_form" enctype="multipart/form-data">
+                        <form action="${pageContext.request.contextPath}/admin/excel/upload" method="post" class="form-horizontal" id="excel_form" enctype="multipart/form-data">
                             <div class="control-group">
                                 <label class="control-label">Excel表:</label>
                                 <div class="controls">

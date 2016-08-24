@@ -7,6 +7,8 @@ import com.ad.util.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Ivan on 2016/8/5.
  */
@@ -18,5 +20,20 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
     protected BaseMapper<User> getBaseMapper() {
         return userMapper;
+    }
+
+    @Override
+    public User login(String account, String password) {
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        User user1 = userMapper.login(user);
+        return user1;
+    }
+
+    @Override
+    public List<User> checkAccount(String account) {
+        List<User> users = userMapper.checkAccount(account);
+        return users;
     }
 }

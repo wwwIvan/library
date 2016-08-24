@@ -27,7 +27,7 @@ import java.util.List;
  * Created by Ivan on 2016/8/19.
  */
 @Controller
-@RequestMapping(value = "/excel")
+@RequestMapping(value = "admin/excel")
 public class ExcelController {
 
     @Autowired
@@ -92,7 +92,7 @@ public class ExcelController {
             bookService.insert(book);
         }
 
-        return "book/list";
+        return "admin/book/list";
     }
 
     /**
@@ -124,7 +124,7 @@ public class ExcelController {
         ex.exportExcel(headers, dataset, out);
         out.close();
 
-        return "book/list";
+        return "admin/book/list";
     }
 
 }

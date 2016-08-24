@@ -25,7 +25,7 @@
 <%@include file="../prelude.jsp"%>
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="${pageContext.request.contextPath}/bookType/list" title="图书类型管理" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a></div>
+        <div id="breadcrumb"> <a href="${pageContext.request.contextPath}/admin/bookType/list" title="图书类型管理" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a></div>
         <h1>${requestScope.bookType.name}类型图书管理</h1>
     </div>
     <div class="container-fluid">
@@ -61,7 +61,7 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/addUI">添加</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/book/addUI">添加</a>
                     </div>
                 </div>
             </div>

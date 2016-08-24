@@ -43,7 +43,7 @@
                         <h5>图书信息编辑</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/book/${book_1.b_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form" enctype="multipart/form-data">
+                        <form action="${pageContext.request.contextPath}/admin/book/${book_1.b_id == null ? 'add' : 'update' }" method="post" class="form-horizontal" id="book_form" enctype="multipart/form-data">
                             <div class="control-group" hidden="hidden">
                                 <label class="control-label">id</label>
                                 <div class="controls"><input type="hidden" value="${book_1.b_id}" name="b_id"/></div>
@@ -174,7 +174,7 @@
             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Styles', 'Format', 'Font', 'FontSize','LineHeight']
         ],
-        filebrowserImageUploadUrl: "${pageContext.request.contextPath}/attachment/fileUpload"
+        filebrowserImageUploadUrl: "${pageContext.request.contextPath}/admin/attachment/fileUpload"
     } );
 </script>
 </body>

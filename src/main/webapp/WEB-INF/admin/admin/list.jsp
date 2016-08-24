@@ -51,8 +51,8 @@
                                 <tr class="gradeX">
                                     <td>${admin.account}</td>
                                     <td class="center">
-                                        <a href="${pageContext.request.contextPath}/admin/updateUI?id=${admin.id}">修改</a>
-                                        <a href="${pageContext.request.contextPath}/admin/delete?id=${admin.id}">删除</a>
+                                        <a href="${pageContext.request.contextPath}/admin/admin/updateUI?id=${admin.id}">修改</a>
+                                        <a href="${pageContext.request.contextPath}/admin/admin/delete?id=${admin.id}">删除</a>
                                     </td>
                                 </tr>
                             </c:forEach>

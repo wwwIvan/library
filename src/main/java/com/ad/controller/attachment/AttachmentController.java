@@ -18,7 +18,7 @@ import java.io.PrintWriter;
  * Created by meiko on 2016/7/20.
  */
 @Controller
-@RequestMapping("/attachment")
+@RequestMapping("admin/attachment")
 public class AttachmentController {
 
     @Autowired
