@@ -2,6 +2,8 @@ package com.ad.model;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * Created by Ivan on 2016/8/2.
@@ -10,11 +12,22 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    private Long id;
+    private Long u_id;
     private String account;
     private String password;
     private String userName;
     private String idCard;
+    private Long existing;
+    @Transient
+    private List<Book> bookList;
+
+    public Long getExisting() {
+        return existing;
+    }
+
+    public void setExisting(Long existing) {
+        this.existing = existing;
+    }
 
     public String getUserName() {
         return userName;
@@ -24,12 +37,12 @@ public class User {
         this.userName = userName;
     }
 
-    public Long getId() {
-        return id;
+    public Long getU_id() {
+        return u_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setU_id(Long u_id) {
+        this.u_id = u_id;
     }
 
     public String getAccount() {
@@ -40,6 +53,14 @@ public class User {
         this.account = account;
     }
 
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -47,7 +68,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getIdCard() {
         return idCard;
@@ -57,12 +77,13 @@ public class User {
         this.idCard = idCard;
     }
 
-    public User(Long id, String account, String password, String userName, String idCard) {
-        this.id = id;
+    public User(Long u_id, String account, String password, String userName, String idCard, Long existing) {
+        this.u_id = u_id;
         this.account = account;
         this.password = password;
         this.userName = userName;
         this.idCard = idCard;
+        this.existing = existing;
     }
 
     public User(){}

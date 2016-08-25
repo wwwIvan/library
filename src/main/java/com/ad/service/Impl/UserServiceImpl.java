@@ -36,4 +36,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         List<User> users = userMapper.checkAccount(account);
         return users;
     }
+
+    @Override
+    public User selectUserBook(Long u_id) {
+        User users = userMapper.selectUserBook(u_id);
+        return users;
+    }
 }

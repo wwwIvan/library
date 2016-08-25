@@ -45,7 +45,7 @@ public class UserInterceptor implements HandlerInterceptor {
             return true;
         }else{
             User user = (User) request.getSession().getAttribute("userLogged");
-            if(user != null && user.getId() != 0 && !user.getId().equals("")){
+            if(user != null && user.getU_id() != 0 && !user.getU_id().equals("")){
                 return true;
             }else{
                 request.setAttribute("result", new AjaxResult(false, "请先登录或登录超时，请重试登录"));

@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ad.dao.UserMapper">
+    <!--用户、图书多对多映射-->
+    <resultMap id="userBookResultMap" type="com.ad.model.User">
+        <id property="u_id" column="u_id"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+        <result column="userName" property="userName"/>
+        <result column="idCard" property="idCard"/>
+        <result column="existing" property="existing"/>
+        <collection property="bookList" ofType="com.ad.model.Book">
+            <id column="b_id" property="b_id"/>
+            <result column="name" property="name"/>
+            <result column="author" property="author"/>
+            <result column="publication_date" property="publication_date"/>
+            <result column="intro" property="intro"/>
+            <result column="picture" property="picture"/>
+        </collection>
+    </resultMap>
+    <!--多对多查询-->
+    <select id="selectUserBook" resultMap="userBookResultMap" parameterType="Long">
+        SELECT u.*,b.*
+        from user u left join user_book ub on u.u_id = ub.u_id
+        left join book b on ub.b_id = b.b_id where u.u_id = #{u_id}
+    </select>
     <select id="login" parameterType="com.ad.model.User" resultType="com.ad.model.User">
         SELECT * FROM user where account = #{account} and password = #{password};
     </select>
     <select id="checkAccount" parameterType="String" resultType="com.ad.model.User">
         SELECT * FROM user where account = #{account}
     </select>
+
 </mapper>

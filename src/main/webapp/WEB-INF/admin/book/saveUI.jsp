@@ -75,7 +75,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label">出版日期:</label>
-                                <div class="controls"><input type="text" class="span20" placeholder="请输入(格式：YYYY-MM-DD)" name="publicationDate" value="${book_1.publicationDate}"/></div>
+                                <div class="controls"><input type="text" class="span20" placeholder="请输入(格式：YYYY-MM-DD)" name="publication_date" value="${book_1.publication_date}"/></div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">图书类型:</label>

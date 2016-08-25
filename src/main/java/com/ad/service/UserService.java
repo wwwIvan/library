@@ -10,4 +10,5 @@ import java.util.List;
 public interface UserService extends BaseService<User> {
     public User login(String account, String password);
     List<User> checkAccount(String account);
+    User selectUserBook(Long u_id);
 }

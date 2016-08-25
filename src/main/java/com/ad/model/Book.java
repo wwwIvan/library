@@ -3,6 +3,7 @@ package com.ad.model;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * Created by Ivan on 2016/8/6.
@@ -13,12 +14,14 @@ public class Book {
     private String b_id;
     private String name;
     private String author;
-    private String publicationDate;
+    private String publication_date;
     private String intro;
     private String picture;
     private Long bt_id;
     @Transient
     private BookType bookType;
+    @Transient
+    private List<User> users;
 
     public BookType getBookType() {
         return bookType;
@@ -38,21 +41,29 @@ public class Book {
 
     public Book(){}
 
-    public Book(String b_id, String name, String author, String publicationDate, String intro, String picture, Long bt_id) {
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Book(String b_id, String name, String author, String publication_date, String intro, String picture, Long bt_id) {
         this.b_id = b_id;
         this.name = name;
         this.author = author;
-        this.publicationDate = publicationDate;
+        this.publication_date = publication_date;
         this.intro = intro;
         this.picture = picture;
         this.bt_id = bt_id;
+
     }
 
-    public Book(String name, String author, String publicationDate, String intro, String picture, Long bt_id) {
-        this.b_id = b_id;
+    public Book(String name, String author, String publication_date, String intro, String picture, Long bt_id) {
         this.name = name;
         this.author = author;
-        this.publicationDate = publicationDate;
+        this.publication_date = publication_date;
         this.intro = intro;
         this.picture = picture;
         this.bt_id = bt_id;
@@ -90,12 +101,12 @@ public class Book {
         this.author = author;
     }
 
-    public String getPublicationDate() {
-        return publicationDate;
+    public String getPublication_date() {
+        return publication_date;
     }
 
-    public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setPublication_date(String publication_date) {
+        this.publication_date = publication_date;
     }
 
     public String getIntro() {

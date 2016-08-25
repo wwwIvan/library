@@ -14,4 +14,30 @@ public interface BookMapper extends BaseMapper<Book> {
     public Book selectBookFetchBookType(Long b_id);
     public List<Book> selectBookByForeignKey(Long bt_id);
     public void deleteByForeignKey(Long bt_id);
+
+    /**
+     * 书籍分页（限定类型）
+     * @param startPos
+     * @param pageSize
+     * @return
+     */
+    public List<Book> selectTypeBooksByPage(Integer startPos, Integer pageSize, Long bt_id);
+    /**
+     * 书籍分页
+     * @param startPos
+     * @param pageSize
+     * @return
+     */
+    public List<Book> selectBooksByPage(Integer startPos, Integer pageSize);
+    /**
+     * 取得书籍数量（限定类型）
+     * @return
+     */
+    public long getBooksCount(Long bt_id);
+    /**
+     * 取得书籍数量
+     * @return
+     */
+    public long getTypeBooksCount();
+
 }

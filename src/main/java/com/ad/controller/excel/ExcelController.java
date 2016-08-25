@@ -119,7 +119,7 @@ public class ExcelController {
 //            while((bis.read(body)) != -1) {
 //                //将图片数据存放到缓冲数组中
 //            }
-            dataset.add(new Book(b.getB_id(),b.getName(),b.getAuthor(),b.getPublicationDate(),b.getIntro(),b.getPicture(),b.getBt_id()));
+            dataset.add(new Book(b.getB_id(),b.getName(),b.getAuthor(),b.getPublication_date(),b.getIntro(),b.getPicture(),b.getBt_id()));
         }
         ex.exportExcel(headers, dataset, out);
         out.close();

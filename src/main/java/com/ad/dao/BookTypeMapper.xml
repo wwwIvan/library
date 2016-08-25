@@ -9,7 +9,7 @@
             <id property="b_id" column="b_id"/>
             <result column="name" property="name"/>
             <result column="author" property="author"/>
-            <result column="publication_date" property="publicationDate"/>
+            <result column="publication_date" property="publication_date"/>
             <result column="intro" property="intro"/>
             <result column="picture" property="picture"/>
         </collection>

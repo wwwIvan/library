@@ -19,7 +19,9 @@
         <br>
         <font color="#9acd32" size="5px">图书列表</font>
         <li><a href="${pageContext.request.contextPath}/stage/bookList"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-        <li><a href="404.html"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+        <br>
+        <font color="#9acd32" size="5px">个人信息</font>
+        <li><a href="${pageContext.request.contextPath}/stage/personal?userId=${sessionScope.userLogged.u_id}"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
         <li><a href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
     </ul>
 </div>

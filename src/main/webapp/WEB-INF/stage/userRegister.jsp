@@ -23,26 +23,33 @@
     <img src="${pageContext.request.contextPath}/resources/img/login-logo.png" alt="" />
 </div>
 <div id="loginbox">
-    <form id="user_form" class="form-vertical" action="${pageContext.request.contextPath}/stage/register" method="post">
+    <form id="user_form" class="form-vertical" action="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'register' : 'update'}" method="post">
         <div class="control-group normal_text"><h3>Library User Register</h3></div>
-        <div class="control-group">
+        <div class="control-group" hidden="hidden">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="Account" name="account" id="account"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="hidden" placeholder="订阅数" name="existing" id="existing" value="5"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="password" id="password"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="confirm_password" name="confirm_password" id="confirm_password"/>
+                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="密码" name="password" id="password"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="密码确认" name="confirm_password" id="confirm_password"/>
                 </div>
             </div>
         </div>

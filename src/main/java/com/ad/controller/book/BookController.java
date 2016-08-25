@@ -38,14 +38,14 @@ public class BookController {
     }
 
     @RequestMapping(value = "/add")
-    public String add(String name, Long bt_id, String author, String publicationDate,
+    public String add(String name, Long bt_id, String author, String publication_date,
                       String intro,@RequestParam(value = "picture", required = false) MultipartFile picture){
         Book book = new Book();
         book.setName(name);
         book.setBt_id(bt_id);
         System.out.println(bt_id);
         book.setAuthor(author);
-        book.setPublicationDate(publicationDate);
+        book.setPublication_date(publication_date);
         book.setIntro(intro);
         bookService.add(book,picture);
         return "redirect:list";
@@ -59,13 +59,13 @@ public class BookController {
     }
 
     @RequestMapping(value = "/update")
-    public String update(String b_id,String name, Long bt_id, String author, String publicationDate,
+    public String update(String b_id,String name, Long bt_id, String author, String publication_date,
                          String intro,MultipartFile picture){
         Book book = bookService.selectByPrimaryKey(b_id);
         book.setName(name);
         book.setBt_id(bt_id);
         book.setAuthor(author);
-        book.setPublicationDate(publicationDate);
+        book.setPublication_date(publication_date);
         book.setIntro(intro);
         bookService.add(book,picture);
         return "redirect:list";

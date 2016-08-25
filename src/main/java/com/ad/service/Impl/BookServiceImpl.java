@@ -3,15 +3,20 @@ package com.ad.service.Impl;
 import com.ad.dao.BookMapper;
 import com.ad.model.Attachment;
 import com.ad.model.Book;
+import com.ad.model.UserBookLink;
 import com.ad.service.AttachmentService;
 import com.ad.service.BookService;
 import com.ad.util.BaseMapper;
 import com.ad.util.FileUploadUtil;
+import com.ad.util.Page;
 import com.ad.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,6 +71,50 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
     @Override
     public Book selectBookFetchBookType(Long b_id) {
         return bookMapper.selectBookFetchBookType(b_id);
+    }
+
+
+    @Override
+    public List<Book> selectBookByList(List<UserBookLink> userBookLinks) {
+        List<Book> books = new ArrayList<Book>();
+        for(int i=0;i<userBookLinks.size();i++){
+            books.add(bookMapper.selectByPrimaryKey(userBookLinks.get(i).getB_id()));
+        }
+        return books;
+    }
+
+    @Override
+    public void showBooksByPage(HttpServletRequest request, Model model) {
+        String pageNow = request.getParameter("pageNow");
+        Page page = null;
+        List<Book> books = new ArrayList<Book>();
+        int totalCount = (int) bookMapper.getTypeBooksCount();
+        if (pageNow != null) {
+            page = new Page(totalCount, Integer.parseInt(pageNow));
+            books = this.bookMapper.selectBooksByPage(page.getStartPos(), page.getPageSize());
+        } else {
+            page = new Page(totalCount, 1);
+            books = this.bookMapper.selectBooksByPage(page.getStartPos(), page.getPageSize());
+        }
+        model.addAttribute("books",books);
+        model.addAttribute("page", page);
+    }
+
+    @Override
+    public void showTypeBooksByPage(HttpServletRequest request, Model model, Long bt_id) {
+        String pageNow = request.getParameter("pageNow");
+        Page page = null;
+        List<Book> books = new ArrayList<Book>();
+        int totalCount = (int) bookMapper.getBooksCount(bt_id);
+        if (pageNow != null) {
+            page = new Page(totalCount, Integer.parseInt(pageNow));
+            books = this.bookMapper.selectTypeBooksByPage(page.getStartPos(), page.getPageSize(),bt_id);
+        } else {
+            page = new Page(totalCount, 1);
+            books = this.bookMapper.selectTypeBooksByPage(page.getStartPos(), page.getPageSize(),bt_id);
+        }
+        model.addAttribute("books",books);
+        model.addAttribute("page", page);
     }
 
     public void add(Book book, MultipartFile picture) {

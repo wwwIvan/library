@@ -55,7 +55,7 @@
                                     <td>${book_id.name}</td>
                                     <td>${book_id.author}</td>
                                     <td>${requestScope.bookType.name}</td>
-                                    <td>${book_id.publicationDate}</td>
+                                    <td>${book_id.publication_date}</td>
                                     <td>${book_id.intro}</td>
                                 </tr>
                             </c:forEach>

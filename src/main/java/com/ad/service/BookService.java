@@ -1,8 +1,11 @@
 package com.ad.service;
 
 import com.ad.model.Book;
+import com.ad.model.UserBookLink;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -14,4 +17,18 @@ public interface BookService extends BaseService<Book>{
     public void update(Book book, MultipartFile picture);
     public void deleteByForeignKey(Long bt_id);
     public List<Book> selectBookByForeignKey(Long bt_id);
+    public List<Book> selectBookByList(List<UserBookLink> userBookLinks);
+    /**
+     * 查询、分页显示书籍
+     * @param request
+     * @param model
+     */
+    void showBooksByPage(HttpServletRequest request, Model model);
+    /**
+     * 根据外键查询、分页显示书籍
+     * @param request
+     * @param model
+     */
+    void showTypeBooksByPage(HttpServletRequest request, Model model,Long bt_id);
+
 }
