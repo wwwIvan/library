@@ -25,6 +25,11 @@ public class UserBookServiceImpl extends BaseServiceImpl<UserBookLink> implement
     }
 
     @Override
+    public long getSubscibeCount(String b_id) {
+        return userBookMapper.getSubscibeCount(b_id);
+    }
+
+    @Override
     public UserBookLink selectByForeignKey(String b_id, Long u_id) {
         UserBookLink userBookLink = new UserBookLink();
         userBookLink.setB_id(b_id);

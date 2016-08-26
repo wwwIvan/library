@@ -1,8 +1,10 @@
 package com.ad.controller;
 
+import com.ad.model.Book;
 import com.ad.model.User;
 import com.ad.model.UserBookLink;
 import com.ad.service.BookService;
+import com.ad.service.BookTypeService;
 import com.ad.service.UserBookService;
 import com.ad.service.UserService;
 import com.ad.util.AjaxResult;
@@ -31,6 +33,9 @@ public class StageController {
     private BookService bookService;
 
     @Autowired
+    private BookTypeService bookTypeService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -48,10 +53,13 @@ public class StageController {
     @RequestMapping(value = "/bookList")
     public String bookList(Model model, HttpServletRequest request, @RequestParam(value = "id",required = false) Long bt_id,
                            @RequestParam(value = "pageNow",required = false) Long pageNow){
+        List<Book> books = bookService.selectAll();
         if(bt_id == null){
             bookService.showBooksByPage(request,model);
+            model.addAttribute("bookType",books);
         }else{
             bookService.showTypeBooksByPage(request,model,bt_id);
+            model.addAttribute("bookType",books);
         }
         return "stage/bookList";
     }
@@ -73,8 +81,10 @@ public class StageController {
                            @RequestParam(value = "b_id") String  b_id,@RequestParam(value = "userId") Long userId){
         if(bt_id == null){
             bookService.showBooksByPage(request,model);
+            model.addAttribute("bookType",bookService.selectAll());
         }else{
             bookService.showTypeBooksByPage(request,model,bt_id);
+            model.addAttribute("bookType",bookService.selectBookByForeignKey(bt_id));
         }
         UserBookLink userBookLink = userBookService.selectByForeignKey(b_id,userId);
         if(userBookLink != null){
@@ -91,7 +101,21 @@ public class StageController {
 
     @RequestMapping(value = "/adLibrary")
     public String adLibrary(Map<String, Object> map){
-        map.put("book",bookService.selectAll());
+        List<Book> books = bookService.selectAll();
+        String b_id = null;
+        Long max = 0L;
+        long num = 0;
+        for(int i=0;i<books.size();i++){
+            num = userBookService.getSubscibeCount(books.get(i).getB_id());
+            if(num > max){
+                b_id = books.get(i).getB_id();
+                max = num;
+            }
+        }
+        Book book = bookService.selectByPrimaryKey(b_id);
+        map.put("book",books);
+        map.put("recommendation",book);
+        map.put("bookType",bookTypeService.selectByPrimaryKey(book.getBt_id()));
         return "stage/adLibrary";
     }
 
@@ -123,7 +147,7 @@ public class StageController {
     public String logout(SessionStatus sessionStatus,Map<String, Object> map){
         map.put("book",bookService.selectAll());
         sessionStatus.setComplete();
-        return "stage/adLibrary";
+        return "redirect:adLibrary";
     }
 
     @RequestMapping(value = "/loginUI")
@@ -135,7 +159,7 @@ public class StageController {
     public String login(String account,String password,Map<String, Object> map){
         map.put("userLogged",userService.login(account,password));
         map.put("book",bookService.selectAll());
-        return "stage/adLibrary";
+        return "redirect:adLibrary";
     }
 
     @RequestMapping(value = "/check")

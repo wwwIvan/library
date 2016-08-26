@@ -7,4 +7,7 @@
     <delete id="deleteSubscibe" parameterType="com.ad.model.UserBookLink">
         DELETE FROM user_book WHERE u_id=#{u_id} AND b_id=#{b_id}
     </delete>
+    <select id="getSubscibeCount" parameterType="String" resultType="Long">
+        SELECT COUNT(*) FROM user_book WHERE b_id = #{b_id}
+    </select>
 </mapper>

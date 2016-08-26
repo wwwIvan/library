@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="single.html"><img src="${pageContext.request.contextPath}/resources/file/book/${books.picture}" alt="" /></a>
                         </div>
                         <div class="review-info">
-                            <a class="span" href="single.html"><i>${books.name}</i></a>
+                            <a class="span"><i>${books.name}</i></a>
                             <p class="dirctr">${books.publication_date}</p>
                             <p class="ratingview">作者:</p>
                             <div class="rating">
@@ -95,83 +95,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="col-md-3 side-bar">
-                    <div class="featured">
-                        <h3>Featured Today in Movie Reviews</h3>
-                        <ul>
-                            <li>
-                                <a href="single.html"><img src="images/f1.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <li>
-                                <a href="single.html"><img src="images/f2.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <li>
-                                <a href="single.html"><img src="images/f3.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <li>
-                                <a href="single.html"><img src="images/f4.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <li>
-                                <a href="single.html"><img src="images/f5.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <li>
-                                <a href="single.html"><img src="images/f6.jpg" alt="" /></a>
-                                <p>lorem movie review</p>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
+                <div class="yrw">
+                    <div class="dropdown-button">
+                        <a class="span"><i>类型选择：</i></a>
+                        <select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
+                            <option value="0">Your rating</option>
+                        </select>
                     </div>
+                </div>
+                <div class="col-md-3 side-bar">
                     <div class="might">
-                        <h4>You might also like</h4>
-                        <div class="might-grid">
-                            <div class="grid-might">
-                                <a href="single.html"><img src="images/mi.jpg" class="img-responsive" alt=""> </a>
+                        <h4>你可能还喜欢:</h4>
+                        <c:forEach items="${requestScope.bookType}" var="bookType" end="5">
+                            <div class="might-grid">
+                                <div class="grid-might">
+                                    <img src="${pageContext.request.contextPath}/resources/file/book/${bookType.picture}" class="img-responsive" alt="">
+                                </div>
+                                <div class="might-top">
+                                    <p>${bookType.name}</p>
+                                    <p>${bookType.author}</p>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="might-top">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <a href="single.html">Lorem Ipsum <i> </i></a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="might-grid">
-                            <div class="grid-might">
-                                <a href="single.html"><img src="images/mi1.jpg" class="img-responsive" alt=""> </a>
-                            </div>
-                            <div class="might-top">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <a href="single.html">Lorem Ipsum <i> </i></a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="might-grid">
-                            <div class="grid-might">
-                                <a href="single.html"><img src="images/mi2.jpg" class="img-responsive" alt=""> </a>
-                            </div>
-                            <div class="might-top">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <a href="single.html">Lorem Ipsum <i> </i></a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="might-grid">
-                            <div class="grid-might">
-                                <a href="single.html"><img src="images/mi3.jpg" class="img-responsive" alt=""> </a>
-                            </div>
-                            <div class="might-top">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <a href="single.html">Lorem Ipsum <i> </i></a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                        </c:forEach>
                     </div>
                     <!---->
                 </div>
-
                 <div class="clearfix"></div>
             </div>
         </div>

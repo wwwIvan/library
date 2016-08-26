@@ -9,4 +9,9 @@ import com.ad.util.BaseMapper;
 public interface UserBookMapper extends BaseMapper<UserBookLink> {
     UserBookLink selectByForeignKey(UserBookLink userBookLink);
     void deleteSubscibe(UserBookLink userBookLink);
+    /**
+     * 取得订阅数量
+     * @return
+     */
+    public long getSubscibeCount(String b_id);
 }

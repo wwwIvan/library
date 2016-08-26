@@ -9,4 +9,5 @@ public interface UserBookService extends BaseService<UserBookLink>{
     public void addSubscibe(String b_id,Long u_id);
     public void deleteSubscibe(String b_id,Long u_id);
     public UserBookLink selectByForeignKey(String b_id,Long u_id);
+    public long getSubscibeCount(String b_id);
 }

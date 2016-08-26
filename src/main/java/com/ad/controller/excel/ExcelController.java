@@ -91,7 +91,7 @@ public class ExcelController {
             }
             if(row.getCell(7)!=null){
                 row.getCell(7).setCellType(Cell.CELL_TYPE_STRING);
-                existing=Long.parseLong(row.getCell(6).getStringCellValue());
+                existing=Long.parseLong(row.getCell(7).getStringCellValue());
             }
             Book book = new Book(b_id,name,author,publicationDate,intro,picture,bt_id,existing);
             bookService.insert(book);

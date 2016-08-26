@@ -12,6 +12,8 @@
 <html>
 <head>
     <title>Aode Library</title>
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger.css"  rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger-theme-air.css"  rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -28,14 +30,21 @@
         <div class="header">
             <%@include file="top-header.jsp"%>
             <div class="header-info">
-                <h1>BIG HERO 6</h1>
-                <p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
-                <p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  8,5/10</p>
-                <p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
-                <p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; 7 November 2014</p>
-                <p class="special">The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
-                <a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a>
-                <a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
+                <c:choose>
+                    <c:when test="${requestScope.recommendation != null}">
+                        <h1>推荐图书</h1>
+                        <p class="age"> ${requestScope.recommendation.name}</p>
+                        <p class="review">出版日期	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  ${requestScope.recommendation.publication_date}</p>
+                        <p class="review reviewgo">作者	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; ${requestScope.recommendation.author}</p>
+                        <p class="review">类型 &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;${requestScope.bookType.name}</p>
+                        <p class="special">${requestScope.recommendation.intro}</p>
+                        <a class="video" href="${pageContext.request.contextPath}/stage/subscibe?b_id=${requestScope.recommendation.b_id}&userId=${sessionScope.userLogged.u_id}"><i class="video1"></i>订阅</a>
+                    </c:when>
+                    <c:otherwise>
+                        <h1>暂无推荐图书</h1>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </div>
         <br>
@@ -45,7 +54,7 @@
                     <li><img src="${pageContext.request.contextPath}/resources/file/book/${book.picture}" alt=""/></li>
                 </c:forEach>
             </ul>
-            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费模板</a></div>
+            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" ></a></div>
             <script type="text/javascript">
                 $(window).load(function() {
                     $("#flexiselDemo1").flexisel({
@@ -80,5 +89,25 @@
     </div>
 </div>
 <div class="clearfix"></div>
+<script src="${pageContext.request.contextPath}/resources/messenger/build/js/messenger.min.js"></script>
 </body>
+<c:if test="${result!=null}">
+    <script>
+        $().ready(function(){
+            var success=${result.success};
+            var msg='${result.msg}';
+            var type="error";
+            if(success=true){
+                type="success"
+            }
+            Messenger.options = {
+                extraClasses: 'messenger-fixed messenger-theme-air messenger-on-top',
+                theme: 'future'
+            }
+            $.globalMessenger().post({  message:"提示："+ msg,
+                type: 'success',
+                showCloseButton: true})
+        })
+    </script>
+</c:if>
 </html>
