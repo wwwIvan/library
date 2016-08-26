@@ -12,6 +12,8 @@
 <html>
 <head>
     <title>Single</title>
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger.css"  rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/resources/messenger/build/css/messenger-theme-air.css"  rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -35,13 +37,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 reviews-grids">
                     <div class="reply-section">
                         <div class="blog-form">
-                            <form action="${pageContext.request.contextPath}/stage/registerUI" method="post">
+                            <form action="${pageContext.request.contextPath}/stage/updateUI" method="post">
+                                <input type="hidden" name="u_id" value="${requestScope.user.u_id}">
                                 姓名：<input type="text" class="text" value="${requestScope.user.userName}" readonly="readonly">
                                 账号：<input type="text" class="text" value="${requestScope.user.account}" readonly="readonly">
-                                密码：<input type="text" class="password" value="${requestScope.user.password}" readonly="readonly">
+                                密码：<input type="text" class="text" value="${requestScope.user.password}" readonly="readonly">
                                 身份证：<input type="text" class="text" value="${requestScope.user.idCard}" readonly="readonly">
                                 还可订阅（最多同时订阅三本书）：<input type="text" class="text" value="${requestScope.user.existing}" readonly="readonly">
-                                <input type="button" value="修改">
+                                <input type="button" value="修改" onclick="this.form.submit()">
                             </form>
                         </div>
                     </div>
@@ -62,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <p class="info">${bookList.intro}</p>
                                     <div class="yrw">
                                         <div class="wt text-center">
-                                            <a href="${pageContext.request.contextPath}/stage/">取消订阅</a>
+                                            <a href="${pageContext.request.contextPath}/stage/cancel?b_id=${bookList.b_id}&userId=${sessionScope.userLogged.u_id}">取消订阅</a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -79,5 +82,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <div class="clearfix"></div>
 </div>
+<script src="${pageContext.request.contextPath}/resources/messenger/build/js/messenger.min.js"></script>
 </body>
+<c:if test="${result!=null}">
+    <script>
+        $().ready(function(){
+            var success=${result.success};
+            var msg='${result.msg}';
+            var type="error";
+            if(success=true){
+                type="success"
+            }
+            Messenger.options = {
+                extraClasses: 'messenger-fixed messenger-theme-air messenger-on-top',
+                theme: 'future'
+            }
+            $.globalMessenger().post({  message:"提示："+ msg,
+                type: 'success',
+                showCloseButton: true})
+        })
+    </script>
+</c:if>
 </html>

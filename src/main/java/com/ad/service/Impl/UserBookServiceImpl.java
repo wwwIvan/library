@@ -7,8 +7,6 @@ import com.ad.util.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by Ivan on 2016/8/5.
  */
@@ -19,8 +17,19 @@ public class UserBookServiceImpl extends BaseServiceImpl<UserBookLink> implement
     private UserBookMapper userBookMapper;
 
     @Override
-    public List<UserBookLink> selectByForeignKey(Long u_id) {
-        return userBookMapper.selectByForeignKey(u_id);
+    public void deleteSubscibe(String b_id, Long u_id) {
+        UserBookLink userBookLink = new UserBookLink();
+        userBookLink.setB_id(b_id);
+        userBookLink.setU_id(u_id);
+        userBookMapper.deleteSubscibe(userBookLink);
+    }
+
+    @Override
+    public UserBookLink selectByForeignKey(String b_id, Long u_id) {
+        UserBookLink userBookLink = new UserBookLink();
+        userBookLink.setB_id(b_id);
+        userBookLink.setU_id(u_id);
+        return userBookMapper.selectByForeignKey(userBookLink);
     }
 
     @Override

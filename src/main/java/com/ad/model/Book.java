@@ -18,10 +18,19 @@ public class Book {
     private String intro;
     private String picture;
     private Long bt_id;
+    private Long existing;
     @Transient
     private BookType bookType;
     @Transient
     private List<User> users;
+
+    public Long getExisting() {
+        return existing;
+    }
+
+    public void setExisting(Long existing) {
+        this.existing = existing;
+    }
 
     public BookType getBookType() {
         return bookType;
@@ -49,7 +58,7 @@ public class Book {
         this.users = users;
     }
 
-    public Book(String b_id, String name, String author, String publication_date, String intro, String picture, Long bt_id) {
+    public Book(String b_id, String name, String author, String publication_date, String intro, String picture, Long bt_id, Long existing) {
         this.b_id = b_id;
         this.name = name;
         this.author = author;
@@ -57,7 +66,9 @@ public class Book {
         this.intro = intro;
         this.picture = picture;
         this.bt_id = bt_id;
-
+        this.existing = existing;
+        this.bookType = bookType;
+        this.users = users;
     }
 
     public Book(String name, String author, String publication_date, String intro, String picture, Long bt_id) {

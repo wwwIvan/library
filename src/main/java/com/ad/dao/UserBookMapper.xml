@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ad.dao.UserBookMapper">
-    <select id="selectBookFetchBookType" parameterType="Long" resultType="com.ad.model.UserBookLink">
-        SELECT * FROM book_user WHERE u_id = #{u_id}
+    <select id="selectByForeignKey" parameterType="com.ad.model.UserBookLink" resultType="com.ad.model.UserBookLink">
+        SELECT * FROM user_book WHERE u_id = #{u_id} AND b_id=#{b_id}
     </select>
+    <delete id="deleteSubscibe" parameterType="com.ad.model.UserBookLink">
+        DELETE FROM user_book WHERE u_id=#{u_id} AND b_id=#{b_id}
+    </delete>
 </mapper>

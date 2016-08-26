@@ -84,6 +84,16 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
     }
 
     @Override
+    public void addExisting(String b_id) {
+        bookMapper.addExisting(b_id);
+    }
+
+    @Override
+    public void cutExisting(String b_id) {
+        bookMapper.cutExisting(b_id);
+    }
+
+    @Override
     public void showBooksByPage(HttpServletRequest request, Model model) {
         String pageNow = request.getParameter("pageNow");
         Page page = null;

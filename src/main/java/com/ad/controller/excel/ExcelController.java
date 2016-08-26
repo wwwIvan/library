@@ -65,6 +65,7 @@ public class ExcelController {
         String intro="";
         Long bt_id = 0L;
         String picture="";
+        Long existing=0L;
 
         for(int i=1;i<=totalRow;i++){
             row=sheet.getRow(i);
@@ -88,7 +89,11 @@ public class ExcelController {
                 row.getCell(6).setCellType(Cell.CELL_TYPE_STRING);
                 bt_id=Long.parseLong(row.getCell(6).getStringCellValue());
             }
-            Book book = new Book(b_id,name,author,publicationDate,intro,picture,bt_id);
+            if(row.getCell(7)!=null){
+                row.getCell(7).setCellType(Cell.CELL_TYPE_STRING);
+                existing=Long.parseLong(row.getCell(6).getStringCellValue());
+            }
+            Book book = new Book(b_id,name,author,publicationDate,intro,picture,bt_id,existing);
             bookService.insert(book);
         }
 
@@ -107,7 +112,7 @@ public class ExcelController {
         ExportExcel<Book> ex = new ExportExcel<Book>();
         response.setContentType("octets/stream");
         response.addHeader("Content-Disposition","attachment;filename=library.xlsx");
-        String[] headers = { "图书编号", "图书名称", "图书作者", "图书出版日期","图书简介", "封面图片","图书类型" };
+        String[] headers = { "图书编号", "图书名称", "图书作者", "图书出版日期","图书简介", "封面图片","图书类型","现存库量"};
         //存储每一行的表中数据
         List<Book> dataset = new ArrayList<Book>();
         OutputStream out = response.getOutputStream();
@@ -119,7 +124,7 @@ public class ExcelController {
 //            while((bis.read(body)) != -1) {
 //                //将图片数据存放到缓冲数组中
 //            }
-            dataset.add(new Book(b.getB_id(),b.getName(),b.getAuthor(),b.getPublication_date(),b.getIntro(),b.getPicture(),b.getBt_id()));
+            dataset.add(new Book(b.getB_id(),b.getName(),b.getAuthor(),b.getPublication_date(),b.getIntro(),b.getPicture(),b.getBt_id(),b.getExisting()));
         }
         ex.exportExcel(headers, dataset, out);
         out.close();

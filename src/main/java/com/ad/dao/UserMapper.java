@@ -12,4 +12,6 @@ public interface UserMapper extends BaseMapper<User> {
     User login(User user);
     List<User> checkAccount(String account);
     User selectUserBook(Long u_id);
+    void addExisting(Long u_id);
+    void cutExisting(Long u_id);
 }

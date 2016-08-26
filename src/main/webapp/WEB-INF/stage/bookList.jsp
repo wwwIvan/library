@@ -179,8 +179,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <div class="clearfix"></div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/messenger/build/js/messenger.min.js"></script>
 </body>
 <c:if test="${result!=null}">

@@ -23,53 +23,84 @@
     <img src="${pageContext.request.contextPath}/resources/img/login-logo.png" alt="" />
 </div>
 <div id="loginbox">
-    <form id="user_form" class="form-vertical" action="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'register' : 'update'}" method="post">
-        <div class="control-group normal_text"><h3>Library User Register</h3></div>
-        <div class="control-group" hidden="hidden">
+    <form id="user_form" class="form-vertical" action="${pageContext.request.contextPath}/stage/${requestScope.user eq null ? 'register' : 'update'}" method="post">
+        <div class="control-group normal_text"><h3>Library User ${requestScope.user eq null ? 'register' : 'update'}</h3></div>
+        <c:choose>
+            <c:when test="${requestScope.user eq null}">
+                <div class="control-group" hidden="hidden">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="hidden" placeholder="订阅数" name="existing" value="5"/>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="control-group" hidden="hidden">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="hidden" placeholder="ID" name="u_id" value="${user.u_id}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group" hidden="hidden">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="hidden" placeholder="订阅数" name="existing" value="${user.existing}"/>
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+        <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="hidden" placeholder="订阅数" name="existing" id="existing" value="5"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account" value="${user.account}"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account"/>
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    <input type="password" placeholder="密码" name="password" id="password" value="${user.password}"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="密码" name="password" id="password"/>
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    <input type="password" placeholder="密码确认" name="confirm_password" id="confirm_password" value="${user.password}"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="密码确认" name="confirm_password" id="confirm_password"/>
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    <input type="text"  class="span3" placeholder="请输入姓名" name="userName" id="userName" value="${user.userName}"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text"  class="span3" placeholder="请输入姓名" name="userName" id="userName"/>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text"  class="span3" placeholder="请输入身份证" name="idCard" id="idCard"/>
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    <input type="text"  class="span3" placeholder="请输入身份证" name="idCard" id="idCard" value="${user.idCard}"/>
                 </div>
             </div>
         </div>
         <div class="form-actions">
-            <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/loginUI" class="flip-link btn btn-warning">登录</a></span>
-            <span class="pull-right"><input type="submit" class="btn btn-success" value="注册"/></span>
+            <c:choose>
+                <c:when test="${requestScope.user eq null}">
+                    <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/loginUI" class="flip-link btn btn-warning">登录</a></span>
+                </c:when>
+                <c:otherwise>
+                    <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/personal" class="flip-link btn btn-warning">取消</a></span>
+                </c:otherwise>
+            </c:choose>
+            <span class="pull-right"><input type="submit" class="btn btn-success" value="${requestScope.user eq null ? '注册' : '修改'}"/></span>
         </div>
     </form>
 </div>
@@ -85,15 +116,19 @@
                 account:{
                     required: true,
                     rangelength:[6,10],
-                    remote:{
-                        type:"post",
-                        url:"${pageContext.request.contextPath}/stage/checkAccount",
-                        data:{
-                            account:function () {
-                                return $("#account").val();
+                    <c:choose>
+                        <c:when test="${requestScope.user eq null}">
+                            remote:{
+                                type:"post",
+                                url:"${pageContext.request.contextPath}/stage/checkAccount",
+                                data:{
+                                    account:function () {
+                                        return $("#account").val();
+                                    }
+                                }
                             }
-                        }
-                    }
+                        </c:when>
+                    </c:choose>
                 },
                 password:{
                     required: true,
@@ -115,7 +150,8 @@
             messages:{
                 account:{
                     required:"请输入账号",
-                    rangelength:"账号长度需在6-10之间"
+                    rangelength:"账号长度需在6-10之间",
+                    remote:"此账号已存在"
                 },
                 password:{
                     required: "请输入密码",

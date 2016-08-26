@@ -1,6 +1,7 @@
 package com.ad.controller;
 
 import com.ad.model.User;
+import com.ad.model.UserBookLink;
 import com.ad.service.BookService;
 import com.ad.service.UserBookService;
 import com.ad.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,15 +57,14 @@ public class StageController {
     }
 
     @RequestMapping(value = "/cancel")
-    public String cancel(Model model, HttpServletRequest request,@RequestParam(value = "id",required = false) Long bt_id,
-                           @RequestParam(value = "b_id") String  b_id,@RequestParam(value = "userId") Long userId){
-        if(bt_id == null){
-            bookService.showBooksByPage(request,model);
-        }else{
-            bookService.showTypeBooksByPage(request,model,bt_id);
-        }
+    public String cancel(Model model,HttpServletRequest request, @RequestParam(value = "b_id") String b_id,
+                         @RequestParam(value = "userId") Long userId){
+        userBookService.deleteSubscibe(b_id,userId);
+        bookService.addExisting(b_id);
+        userService.addExisting(userId);
+        model.addAttribute("user",userService.selectByPrimaryKey(userId));
+        model.addAttribute("books",userService.selectUserBook(userId));
         request.setAttribute("result", new AjaxResult(true, "取消订阅成功"));
-        userBookService.addSubscibe(b_id,userId);
         return "stage/personal";
     }
 
@@ -75,15 +76,36 @@ public class StageController {
         }else{
             bookService.showTypeBooksByPage(request,model,bt_id);
         }
-        request.setAttribute("result", new AjaxResult(true, "订阅成功"));
-        userBookService.addSubscibe(b_id,userId);
-        return "stage/bookList";
+        UserBookLink userBookLink = userBookService.selectByForeignKey(b_id,userId);
+        if(userBookLink != null){
+            request.setAttribute("result", new AjaxResult(false, "您已经订阅过此书"));
+            return "stage/bookList";
+        }else {
+            bookService.cutExisting(b_id);
+            userService.cutExisting(userId);
+            request.setAttribute("result", new AjaxResult(true, "订阅成功"));
+            userBookService.addSubscibe(b_id,userId);
+            return "stage/bookList";
+        }
     }
 
     @RequestMapping(value = "/adLibrary")
     public String adLibrary(Map<String, Object> map){
         map.put("book",bookService.selectAll());
         return "stage/adLibrary";
+    }
+
+    @RequestMapping(value = "/updateUI")
+    public String userUpdateUI(Long u_id,Map<String, Object> map) {
+        map.put("user",userService.selectByPrimaryKey(u_id));
+        return "stage/userRegister";
+    }
+
+    @RequestMapping(value = "/update")
+    public String userUpdate(User user,Map<String, Object> map) {
+        userService.updateByPrimaryKey(user);
+        map.put("user",userService.selectByPrimaryKey(user.getU_id()));
+        return "stage/personal";
     }
 
     @RequestMapping(value = "/registerUI")
@@ -95,6 +117,13 @@ public class StageController {
     public String register(User user){
         userService.insert(user);
         return "stage/userLogin";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(SessionStatus sessionStatus,Map<String, Object> map){
+        map.put("book",bookService.selectAll());
+        sessionStatus.setComplete();
+        return "stage/adLibrary";
     }
 
     @RequestMapping(value = "/loginUI")

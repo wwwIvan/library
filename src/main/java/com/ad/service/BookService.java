@@ -18,6 +18,8 @@ public interface BookService extends BaseService<Book>{
     public void deleteByForeignKey(Long bt_id);
     public List<Book> selectBookByForeignKey(Long bt_id);
     public List<Book> selectBookByList(List<UserBookLink> userBookLinks);
+    void addExisting(String b_id);
+    void cutExisting(String b_id);
     /**
      * 查询、分页显示书籍
      * @param request

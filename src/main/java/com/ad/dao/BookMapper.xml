@@ -55,8 +55,8 @@
         WHERE b_id = #{b_id}
     </update>
     <delete id="deleteByForeignKey" parameterType="Long">
-        DELETE FROM book WHERE bt_id=#{bt_id}
-    </delete>
+    DELETE FROM book WHERE bt_id=#{bt_id}
+  </delete>
     <!-- 类型分页SQL语句 -->
     <select id="selectTypeBooksByPage" resultType="com.ad.model.Book">
         select * from book WHERE bt_id = #{2} limit #{0},#{1}
@@ -73,4 +73,10 @@
     <select id="getTypeBooksCount" resultType="Long" >
         SELECT COUNT(*) FROM book
     </select>
+    <update id="cutExisting" parameterType="String">
+        UPDATE book SET existing=existing-1 WHERE b_id = #{b_id}
+    </update>
+    <update id="addExisting" parameterType="String">
+        UPDATE book SET existing=existing+1 WHERE b_id = #{b_id}
+    </update>
 </mapper>

@@ -38,6 +38,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
+    public void addExisting(Long u_id) {
+        userMapper.addExisting(u_id);
+    }
+
+    @Override
+    public void cutExisting(Long u_id) {
+        userMapper.cutExisting(u_id);
+    }
+
+    @Override
     public User selectUserBook(Long u_id) {
         User users = userMapper.selectUserBook(u_id);
         return users;

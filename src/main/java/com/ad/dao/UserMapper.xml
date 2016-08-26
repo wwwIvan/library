@@ -30,5 +30,10 @@
     <select id="checkAccount" parameterType="String" resultType="com.ad.model.User">
         SELECT * FROM user where account = #{account}
     </select>
-
+    <update id="cutExisting" parameterType="Long">
+        UPDATE user SET existing=existing-1 WHERE u_id = #{u_id}
+    </update>
+    <update id="addExisting" parameterType="Long">
+        UPDATE user SET existing=existing+1 WHERE u_id = #{u_id}
+    </update>
 </mapper>

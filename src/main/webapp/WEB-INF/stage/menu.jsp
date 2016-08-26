@@ -11,8 +11,22 @@
 <div class="menu">
 
     <ul>
-        <font color="#9acd32" size="5px">登录</font>
-        <li><a href="${pageContext.request.contextPath}/stage/loginUI"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li>
+        <c:choose>
+            <c:when test="${sessionScope.userLogged eq null}">
+                <font color="#9acd32" size="5px">登录</font>
+                <li><a href="${pageContext.request.contextPath}/stage/loginUI">
+                    <div class="video"><i class="videos"></i><i class="videos1"></i></div>
+                </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <font color="#9acd32" size="5px">注销</font>
+                <li><a href="${pageContext.request.contextPath}/stage/logout">
+                    <div class="video"><i class="videos"></i><i class="videos1"></i></div>
+                </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
         <br>
         <font color="#9acd32" size="5px">主页</font>
         <li><a class="active" href="${pageContext.request.contextPath}/stage/adLibrary"><i class="home"></i></a></li>
@@ -21,7 +35,8 @@
         <li><a href="${pageContext.request.contextPath}/stage/bookList"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
         <br>
         <font color="#9acd32" size="5px">个人信息</font>
-        <li><a href="${pageContext.request.contextPath}/stage/personal?userId=${sessionScope.userLogged.u_id}"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+        <li><a href="${pageContext.request.contextPath}/stage/personal?userId=${sessionScope.userLogged.u_id}">
+            <div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
         <li><a href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
     </ul>
 </div>
