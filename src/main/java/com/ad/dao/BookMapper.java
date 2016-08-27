@@ -23,6 +23,13 @@ public interface BookMapper extends BaseMapper<Book> {
      * @param pageSize
      * @return
      */
+    public List<Book> selectBooksByPageName(Integer startPos, Integer pageSize, String name);
+    /**
+     * 书籍分页（模糊查询）
+     * @param startPos
+     * @param pageSize
+     * @return
+     */
     public List<Book> selectTypeBooksByPage(Integer startPos, Integer pageSize, Long bt_id);
     /**
      * 书籍分页
@@ -31,6 +38,11 @@ public interface BookMapper extends BaseMapper<Book> {
      * @return
      */
     public List<Book> selectBooksByPage(Integer startPos, Integer pageSize);
+    /**
+     * 取得书籍数量（限模糊查询定类型）
+     * @return
+     */
+    public long getBooksCountByName(String name);
     /**
      * 取得书籍数量（限定类型）
      * @return

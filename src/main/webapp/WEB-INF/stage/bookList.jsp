@@ -36,59 +36,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="reviews-section">
                 <h3 class="head">图书总览</h3>
                 <div class="col-md-9 reviews-grids">
-                <c:forEach items="${requestScope.books}" var="books">
-                    <div class="review">
-                        <div class="movie-pic">
-                            <a href="single.html"><img src="${pageContext.request.contextPath}/resources/file/book/${books.picture}" alt="" /></a>
-                        </div>
-                        <div class="review-info">
-                            <a class="span"><i>${books.name}</i></a>
-                            <p class="dirctr">${books.publication_date}</p>
-                            <p class="ratingview">作者:</p>
-                            <div class="rating">
-                                ${books.author}
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="info">${books.intro}</p>
-                            <div class="yrw">
-                                <div class="rtm text-left">
-                                    <a href="${pageContext.request.contextPath}/stage/subscibe?b_id=${books.b_id}&userId=${sessionScope.userLogged.u_id}">订阅</a>
+                    <c:choose>
+                        <c:when test="${requestScope.books.size() > 0}">
+                            <c:forEach items="${requestScope.books}" var="books">
+                                <div class="review">
+                                    <div class="movie-pic">
+                                        <a href="single.html"><img src="${pageContext.request.contextPath}/resources/file/book/${books.picture}" alt="" /></a>
+                                    </div>
+                                    <div class="review-info">
+                                        <a class="span"><i>${books.name}</i></a>
+                                        <p class="dirctr">${books.publication_date}</p>
+                                        <p class="ratingview">作者:</p>
+                                        <div class="rating">
+                                                ${books.author}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <p class="ratingview c-rating">类型:</p>
+                                        <div class="rating c-rating">
+                                            <c:forEach items="${requestScope.bookTypes}" var="bookTypes">
+                                                <c:if test="${books.bt_id == bookTypes.bt_id}">
+                                                    ${bookTypes.name}
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <p class="info">${books.intro}</p>
+                                        <div class="yrw">
+                                            <div class="rtm text-left">
+                                                <a href="${pageContext.request.contextPath}/stage/subscibe?b_id=${books.b_id}&userId=${sessionScope.userLogged.u_id}&bt_id=${requestScope.bt_id}">订阅</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="clearfix"></div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="review">
+                                暂无此类型图书
                             </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                     <div class="pagenation">
                         <ul>
                             <li><font size="2">共 ${page.totalPageCount} 页</font> <font size="2">第${page.pageNow} 页</font></li>
-                            <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=1">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=1&bt_id=${requestScope.bt_id}&name=${requestScope.name}">首页</a></li>
                             <c:choose>
                                 <c:when test="${page.pageNow - 1 > 0}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow - 1}">上一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow - 1}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">上一页</a></li>
                                 </c:when>
                                 <c:when test="${page.pageNow - 1 <= 0}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=1">上一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=1&bt_id=${requestScope.bt_id}&name=${requestScope.name}">上一页</a></li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${page.totalPageCount==0}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow}">下一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">下一页</a></li>
                                 </c:when>
                                 <c:when test="${page.pageNow + 1 < page.totalPageCount}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow + 1}">下一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow + 1}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">下一页</a></li>
                                 </c:when>
                                 <c:when test="${page.pageNow + 1 >= page.totalPageCount}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.totalPageCount}">下一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.totalPageCount}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">下一页</a></li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${page.totalPageCount==0}">
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow}">尾页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.pageNow}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">尾页</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.totalPageCount}">尾页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/stage/${requestScope.name eq null ? 'bookList' : 'search'}?pageNow=${page.totalPageCount}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">尾页</a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>
@@ -98,22 +116,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="yrw">
                     <div class="dropdown-button">
                         <a class="span"><i>类型选择：</i></a>
-                        <select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-                            <option value="0">Your rating</option>
+                        <select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}' onchange="javascript:location.href=this.value;">
+                            <option value="" selected="selected">-----------</option>
+                            <c:forEach items="${requestScope.bookTypes}" var="bookTypes">
+                                <option value="${pageContext.request.contextPath}/stage/bookList?bt_id=${bookTypes.bt_id}">${bookTypes.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3 side-bar">
                     <div class="might">
                         <h4>你可能还喜欢:</h4>
-                        <c:forEach items="${requestScope.bookType}" var="bookType" end="5">
+                        <c:forEach items="${requestScope.bookList}" var="bookList" end="5">
                             <div class="might-grid">
                                 <div class="grid-might">
-                                    <img src="${pageContext.request.contextPath}/resources/file/book/${bookType.picture}" class="img-responsive" alt="">
+                                    <img src="${pageContext.request.contextPath}/resources/file/book/${bookList.picture}" class="img-responsive" alt="">
                                 </div>
                                 <div class="might-top">
-                                    <p>${bookType.name}</p>
-                                    <p>${bookType.author}</p>
+                                    <p>${bookList.name}</p>
+                                    <p>${bookTybookListpe.author}</p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

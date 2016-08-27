@@ -79,4 +79,12 @@
     <update id="addExisting" parameterType="String">
         UPDATE book SET existing=existing+1 WHERE b_id = #{b_id}
     </update>
+    <!-- 分页SQL语句、模糊查询 -->
+    <select id="selectBooksByPageName" resultType="com.ad.model.Book">
+        select * from book WHERE name LIKE concat(concat('%',#{2},'%')) limit #{0},#{1}
+    </select>
+    <!-- 模糊查询,取得记录的总数 -->
+    <select id="getBooksCountByName" resultType="Long" parameterType="String">
+        SELECT COUNT(*) FROM book WHERE name LIKE concat(concat('%',#{name},'%'))
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.ad.controller;
 
 import com.ad.model.Book;
+import com.ad.model.BookType;
 import com.ad.model.User;
 import com.ad.model.UserBookLink;
 import com.ad.service.BookService;
@@ -41,6 +42,18 @@ public class StageController {
     @Autowired
     private UserBookService userBookService;
 
+    @RequestMapping(value = "/search")
+    public String search(Model model, HttpServletRequest request, @RequestParam(value = "name",required = false)String name,
+                         @RequestParam(value = "pageNow",required = false) Long pageNow){
+        List<Book> books = bookService.selectAll();
+        List<BookType> bookTypes = bookTypeService.selectAll();
+        model.addAttribute("bookList",books);
+        model.addAttribute("bookTypes",bookTypes);
+        model.addAttribute("name",name);
+        bookService.selectBooksByPageName(request,model,name);
+        return "stage/bookList";
+    }
+
     @RequestMapping(value = "/personal")
     public String personal(Model model,@RequestParam(value = "userId") Long userId){
         model.addAttribute("user",userService.selectByPrimaryKey(userId));
@@ -51,15 +64,19 @@ public class StageController {
     }
 
     @RequestMapping(value = "/bookList")
-    public String bookList(Model model, HttpServletRequest request, @RequestParam(value = "id",required = false) Long bt_id,
+    public String bookList(Model model, HttpServletRequest request, @RequestParam(value = "bt_id",required = false) Long bt_id,
                            @RequestParam(value = "pageNow",required = false) Long pageNow){
         List<Book> books = bookService.selectAll();
+        List<BookType> bookTypes = bookTypeService.selectAll();
         if(bt_id == null){
             bookService.showBooksByPage(request,model);
-            model.addAttribute("bookType",books);
+            model.addAttribute("bookList",books);
+            model.addAttribute("bookTypes",bookTypes);
         }else{
             bookService.showTypeBooksByPage(request,model,bt_id);
-            model.addAttribute("bookType",books);
+            model.addAttribute("bookList",books);
+            model.addAttribute("bookTypes",bookTypes);
+            model.addAttribute("bt_id",bt_id);
         }
         return "stage/bookList";
     }
@@ -77,14 +94,17 @@ public class StageController {
     }
 
     @RequestMapping(value = "/subscibe")
-    public String subscibe(Model model, HttpServletRequest request,@RequestParam(value = "id",required = false) Long bt_id,
+    public String subscibe(Model model, HttpServletRequest request,@RequestParam(value = "bt_id",required = false) Long bt_id,
                            @RequestParam(value = "b_id") String  b_id,@RequestParam(value = "userId") Long userId){
         if(bt_id == null){
             bookService.showBooksByPage(request,model);
-            model.addAttribute("bookType",bookService.selectAll());
+            model.addAttribute("bookList",bookService.selectAll());
+            model.addAttribute("bookTypes",bookTypeService.selectAll());
         }else{
             bookService.showTypeBooksByPage(request,model,bt_id);
-            model.addAttribute("bookType",bookService.selectBookByForeignKey(bt_id));
+            model.addAttribute("bookList",bookService.selectAll());
+            model.addAttribute("bookTypes",bookTypeService.selectAll());
+            model.addAttribute("bt_id",bt_id);
         }
         UserBookLink userBookLink = userBookService.selectByForeignKey(b_id,userId);
         if(userBookLink != null){

@@ -30,21 +30,21 @@
         <br>
         <font color="#9acd32" size="5px">主页</font>
         <li><a
-                <c:if test="${requestScope.user == null && requestScope.bookType != null && requestScope.recommendation != null}">
+                <c:if test="${requestScope.user == null && requestScope.bookList != null && requestScope.recommendation != null}">
                     class="active"
                 </c:if>
                 href="${pageContext.request.contextPath}/stage/adLibrary"><i class="home"></i></a></li>
         <br>
         <font color="#9acd32" size="5px">图书列表</font>
         <li><a
-                <c:if test="${requestScope.user eq null && requestScope.bookType != null && requestScope.recommendation == null}">
+                <c:if test="${requestScope.user eq null && requestScope.bookList != null && requestScope.recommendation == null}">
                     class="active"
                 </c:if>
                 href="${pageContext.request.contextPath}/stage/bookList"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
         <br>
         <font color="#9acd32" size="5px">个人信息</font>
         <li><a
-                <c:if test="${requestScope.user != null && requestScope.bookType == null}">
+                <c:if test="${requestScope.user != null && requestScope.bookList == null}">
                     class="active"
                 </c:if>
                 href="${pageContext.request.contextPath}/stage/personal?userId=${sessionScope.userLogged.u_id}">

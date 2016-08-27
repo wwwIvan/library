@@ -14,8 +14,8 @@
         <p>Aode Library</p>
     </div>
     <div class="search">
-        <form>
-            <input type="text" value="Search.." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search..';}"/>
+        <form action="${pageContext.request.contextPath}/stage/search" method="post">
+            <input type="text" value="Search.." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search..';}" name="name"/>
             <input type="submit" value="">
         </form>
     </div>

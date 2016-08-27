@@ -32,5 +32,11 @@ public interface BookService extends BaseService<Book>{
      * @param model
      */
     void showTypeBooksByPage(HttpServletRequest request, Model model,Long bt_id);
+    /**
+     * 模糊查询查询、分页显示书籍
+     * @param request
+     * @param model
+     */
+    void selectBooksByPageName(HttpServletRequest request, Model model,String name);
 
 }

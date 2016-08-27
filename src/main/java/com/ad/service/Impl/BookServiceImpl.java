@@ -94,6 +94,23 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
     }
 
     @Override
+    public void selectBooksByPageName(HttpServletRequest request, Model model, String name) {
+        String pageNow = request.getParameter("pageNow");
+        Page page = null;
+        List<Book> books = new ArrayList<Book>();
+        int totalCount = (int) bookMapper.getBooksCountByName(name);
+        if (pageNow != null) {
+            page = new Page(totalCount, Integer.parseInt(pageNow));
+            books = this.bookMapper.selectBooksByPageName(page.getStartPos(), page.getPageSize(),name);
+        } else {
+            page = new Page(totalCount, 1);
+            books = this.bookMapper.selectBooksByPageName(page.getStartPos(), page.getPageSize(),name);
+        }
+        model.addAttribute("books",books);
+        model.addAttribute("page", page);
+    }
+
+    @Override
     public void showBooksByPage(HttpServletRequest request, Model model) {
         String pageNow = request.getParameter("pageNow");
         Page page = null;
