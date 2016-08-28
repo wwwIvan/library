@@ -26,7 +26,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="${pageContext.request.contextPath}/book/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书信息管理</a>
+            <a href="${pageContext.request.contextPath}/admin/book/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书信息管理</a>
             <a>图书信息编辑</a>
         </div>
         <h1>图书信息编辑</h1>
@@ -72,6 +72,10 @@
                             <div class="control-group">
                                 <label class="control-label">作者:</label>
                                 <div class="controls"><input type="text" class="span20" placeholder="请输入..." name="author" value="${book_1.author}"/></div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">入库量:</label>
+                                <div class="controls"><input type="text" class="span20" placeholder="请输入..." name="existing" value="${book_1.existing}"/></div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">出版日期:</label>
@@ -142,19 +146,27 @@
                 author:{
                     required:true,
                 },
-                publicationDate:{
+                existing:{
+                    required:true,
+                    min:0,
+                },
+                publication_date:{
                     required:true,
                     dateISO:true,
                 }
             },
             messages:{
                 name: {
-                    required: "请输入类型名",
+                    required: "请输入书籍名",
                 },
                 author:{
                     required:"请输入作者",
                 },
-                publicationDate:{
+                existing:{
+                    required:"请填写入库量",
+                    min:"入库量最少不能为零",
+                },
+                publication_date:{
                     required:"请输入出版日期",
                     dateISO:"必须符合（YYYY-MM-DD）格式",
                 }

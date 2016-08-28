@@ -1,8 +1,10 @@
 package com.ad.controller.bookType;
 
 import com.ad.model.Book;
+import com.ad.model.UserBookLink;
 import com.ad.service.BookService;
 import com.ad.service.BookTypeService;
+import com.ad.service.UserBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,9 @@ public class BookTypeController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserBookService userBookService;
 
     @RequestMapping(value = "/typeList")
     public String typeList(Map<String, Object> map,@RequestParam(value = "id") Long bt_id){
@@ -64,7 +69,15 @@ public class BookTypeController {
     @RequestMapping(value = "/delete")
     public String delete(@RequestParam(value = "id") Long id){
         List<Book> books = bookService.selectBookByForeignKey(id);
+        String b_id = "";
         if(books.size()>0){
+            for(int i = 0;i<books.size();i++){
+                b_id = books.get(i).getB_id();
+            }
+            List<UserBookLink> userBookLinks = userBookService.selectListByForeignKey(b_id);
+            if(userBookLinks.size()>0){
+                userBookService.deleteList(b_id);
+            }
             bookService.deleteByForeignKey(id);
         }
         bookTypeService.deleteByPrimaryKey(id);

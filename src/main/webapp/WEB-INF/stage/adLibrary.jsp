@@ -38,7 +38,7 @@
                         <p class="review reviewgo">作者	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; ${requestScope.recommendation.author}</p>
                         <p class="review">类型 &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;${requestScope.bookType.name}</p>
                         <p class="special">${requestScope.recommendation.intro}</p>
-                        <a class="video" href="${pageContext.request.contextPath}/stage/subscibe?b_id=${requestScope.recommendation.b_id}&userId=${sessionScope.userLogged.u_id}"><i class="video1"></i>订阅</a>
+                        <a class="video" href="${pageContext.request.contextPath}/stage/subscibe?b_id=${requestScope.recommendation.b_id}&userId=${sessionScope.userLogged.u_id}&name=${requestScope.name}"><i class="video1"></i>订阅</a>
                     </c:when>
                     <c:otherwise>
                         <h1>暂无推荐图书</h1>

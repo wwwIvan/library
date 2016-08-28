@@ -42,23 +42,8 @@
             </div>
         </div>
         <div class="form-actions">
-            <span class="pull-left"><a href="#" class="flip-link btn btn-warning" id="to-recover">Lost password?</a></span>
             <span class="pull-left"><a href="${pageContext.request.contextPath}/admin/admin/registerUI" class="flip-link btn btn-warning">注册</a></span>
             <span class="pull-right"><input type="submit" class="btn btn-success" value="登录" /></span>
-        </div>
-    </form>
-    <form id="recoverform" action="#" class="form-vertical">
-        <p class="normal_text">Enter your e-mail address below and we will send you instructions <br/><font color="#FF6633">how to recover a password.</font></p>
-
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on"><i class="icon-envelope"></i></span><input type="text" placeholder="输入身份证号..." name="userId"/>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <span class="pull-left"><a href="#" class="flip-link btn btn-warning" id="to-login">&laquo; Back to login</a></span>
-            <span class="pull-right"><input type="submit" class="btn btn-info" value="Recover" /></span>
         </div>
     </form>
 </div>

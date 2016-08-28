@@ -26,7 +26,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="${pageContext.request.contextPath}/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a>
+            <a href="${pageContext.request.contextPath}/admin/bookType/list" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>图书类型管理</a>
             <a>图书类型编辑</a>
         </div>
         <h1>图书类型编辑</h1>

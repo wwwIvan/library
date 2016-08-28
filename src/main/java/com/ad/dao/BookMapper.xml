@@ -51,6 +51,7 @@
             ,picture = #{picture},
         </if>
         publication_date = #{publication_date},
+        existing = #{existing},
         author = #{author}
         WHERE b_id = #{b_id}
     </update>

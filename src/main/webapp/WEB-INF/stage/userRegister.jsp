@@ -34,6 +34,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account" value="${user.account}"/>
+                        </div>
+                    </div>
+                </div>
             </c:when>
             <c:otherwise>
                 <div class="control-group" hidden="hidden">
@@ -50,15 +57,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account" value="${user.account}" readonly="readonly"/>
+                        </div>
+                    </div>
+                </div>
             </c:otherwise>
         </c:choose>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="账号" name="account" id="account" value="${user.account}"/>
-                </div>
-            </div>
-        </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
@@ -97,7 +104,7 @@
                     <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/loginUI" class="flip-link btn btn-warning">登录</a></span>
                 </c:when>
                 <c:otherwise>
-                    <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/personal" class="flip-link btn btn-warning">取消</a></span>
+                    <span class="pull-left"><a href="${pageContext.request.contextPath}/stage/personal?userId=${sessionScope.userLogged.u_id}" class="flip-link btn btn-warning">取消</a></span>
                 </c:otherwise>
             </c:choose>
             <span class="pull-right"><input type="submit" class="btn btn-success" value="${requestScope.user eq null ? '注册' : '修改'}"/></span>

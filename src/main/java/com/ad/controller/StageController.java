@@ -44,13 +44,22 @@ public class StageController {
 
     @RequestMapping(value = "/search")
     public String search(Model model, HttpServletRequest request, @RequestParam(value = "name",required = false)String name,
-                         @RequestParam(value = "pageNow",required = false) Long pageNow){
+                         @RequestParam(value = "pageNow",required = false) Long pageNow) throws IOException{
+        String newName = "";
+        if(name.equals(new String(name.getBytes("iso8859-1"),"iso8859-1"))){
+            newName = new String(name.getBytes("iso8859-1"),"UTF-8");
+        }
         List<Book> books = bookService.selectAll();
         List<BookType> bookTypes = bookTypeService.selectAll();
         model.addAttribute("bookList",books);
         model.addAttribute("bookTypes",bookTypes);
-        model.addAttribute("name",name);
-        bookService.selectBooksByPageName(request,model,name);
+        if(newName.equals("")){
+            model.addAttribute("name",name);
+            bookService.selectBooksByPageName(request,model,name);
+        }else{
+            model.addAttribute("name",newName);
+            bookService.selectBooksByPageName(request,model,newName);
+        }
         return "stage/bookList";
     }
 
@@ -95,16 +104,44 @@ public class StageController {
 
     @RequestMapping(value = "/subscibe")
     public String subscibe(Model model, HttpServletRequest request,@RequestParam(value = "bt_id",required = false) Long bt_id,
-                           @RequestParam(value = "b_id") String  b_id,@RequestParam(value = "userId") Long userId){
-        if(bt_id == null){
-            bookService.showBooksByPage(request,model);
-            model.addAttribute("bookList",bookService.selectAll());
-            model.addAttribute("bookTypes",bookTypeService.selectAll());
+                           @RequestParam(value = "b_id") String  b_id,@RequestParam(value = "userId") Long userId,
+                           @RequestParam(value = "name",required = false)String name) throws IOException{
+        model.addAttribute("bookList",bookService.selectAll());
+        model.addAttribute("bookTypes",bookTypeService.selectAll());
+        String newName = "";
+        if(name.equals(new String(name.getBytes("iso8859-1"),"iso8859-1"))){
+            newName = new String(name.getBytes("iso8859-1"),"UTF-8");
+        }
+        if(newName.equals("")){
+            if(name == null && bt_id == null){
+                bookService.showBooksByPage(request,model);
+            }else if(bt_id != null){
+                bookService.showTypeBooksByPage(request,model,bt_id);
+                model.addAttribute("bt_id",bt_id);
+            }else{
+                bookService.selectBooksByPageName(request,model,name);
+                model.addAttribute("name",newName);
+            }
         }else{
-            bookService.showTypeBooksByPage(request,model,bt_id);
-            model.addAttribute("bookList",bookService.selectAll());
-            model.addAttribute("bookTypes",bookTypeService.selectAll());
-            model.addAttribute("bt_id",bt_id);
+            if(bt_id == null && newName.equals("")){
+                bookService.showBooksByPage(request,model);
+            }else if(bt_id != null && newName.equals("")){
+                bookService.showTypeBooksByPage(request,model,bt_id);
+                model.addAttribute("bt_id",bt_id);
+            }else{
+                bookService.selectBooksByPageName(request,model,newName);
+                model.addAttribute("name",newName);
+            }
+        }
+        Book book = bookService.selectByPrimaryKey(b_id);
+        if(book.getExisting() == 0){
+            request.setAttribute("result", new AjaxResult(false, "该书籍以没有库存"));
+            return "stage/bookList";
+        }
+        User user = userService.selectByPrimaryKey(userId);
+        if(user.getExisting() == 0){
+            request.setAttribute("result", new AjaxResult(false, "您已达到订阅上限，最多订阅五本"));
+            return "stage/bookList";
         }
         UserBookLink userBookLink = userBookService.selectByForeignKey(b_id,userId);
         if(userBookLink != null){
@@ -135,7 +172,9 @@ public class StageController {
         Book book = bookService.selectByPrimaryKey(b_id);
         map.put("book",books);
         map.put("recommendation",book);
-        map.put("bookType",bookTypeService.selectByPrimaryKey(book.getBt_id()));
+        if(book != null){
+            map.put("bookType",bookTypeService.selectByPrimaryKey(book.getBt_id()));
+        }
         return "stage/adLibrary";
     }
 

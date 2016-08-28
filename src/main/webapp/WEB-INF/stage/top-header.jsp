@@ -15,7 +15,7 @@
     </div>
     <div class="search">
         <form action="${pageContext.request.contextPath}/stage/search" method="post">
-            <input type="text" value="Search.." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search..';}" name="name"/>
+            <input type="text" value="search..." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search..';}" name="name"/>
             <input type="submit" value="">
         </form>
     </div>

@@ -30,7 +30,7 @@
         <br>
         <font color="#9acd32" size="5px">主页</font>
         <li><a
-                <c:if test="${requestScope.user == null && requestScope.bookList != null && requestScope.recommendation != null}">
+                <c:if test="${requestScope.user == null && requestScope.bookType != null && requestScope.recommendation != null}">
                     class="active"
                 </c:if>
                 href="${pageContext.request.contextPath}/stage/adLibrary"><i class="home"></i></a></li>

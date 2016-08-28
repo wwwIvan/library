@@ -63,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <p class="info">${books.intro}</p>
                                         <div class="yrw">
                                             <div class="rtm text-left">
-                                                <a href="${pageContext.request.contextPath}/stage/subscibe?b_id=${books.b_id}&userId=${sessionScope.userLogged.u_id}&bt_id=${requestScope.bt_id}">订阅</a>
+                                                <a id="subscibe" name="subscibe"
+                                                        href="${pageContext.request.contextPath}/stage/subscibe?b_id=${books.b_id}&userId=${sessionScope.userLogged.u_id}&bt_id=${requestScope.bt_id}&name=${requestScope.name}">
+                                                    订阅</a>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
